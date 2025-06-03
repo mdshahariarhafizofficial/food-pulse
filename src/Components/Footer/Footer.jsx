@@ -98,8 +98,8 @@ const Footer = () => {
                 </div>
             </div>
             <div className='bg-primary px-4 lg:px-0 py-5'>
-                <div className='md:max-w-[1500px] mx-auto text-white flex items-center justify-between'>
-                    <p>Food Pulse — Track your food, reduce waste, and eat fresh every day.</p>
+                <div className='md:max-w-[1500px] mx-auto text-white flex flex-col md:flex-row gap-6 items-center justify-between'>
+                    <p className='text-center md:text-left'>Food Pulse — Track your food, reduce waste, and eat fresh every day.</p>
                     <p>
                         © 2025 Food Pulse. All rights reserved.
                     </p>
