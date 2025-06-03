@@ -74,7 +74,7 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                            <button onClick={()=>handleSingOut()} className="btn btn-primary text-white text-base font-normal px-6 tracking-wider">Log Out</button>
+                            <button className="btn btn-primary text-white text-base font-normal px-6 tracking-wider">Log Out</button>
                         </div>
                         :
                         <div className='flex items-center gap-4'>
