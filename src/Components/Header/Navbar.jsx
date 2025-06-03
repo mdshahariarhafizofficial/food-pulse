@@ -4,6 +4,9 @@ import logo from '../../assets/Pulse.png'
 // import { AuthContext } from '../../Context/AuthContext';
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import { ImExit } from 'react-icons/im';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { BiLogInCircle } from 'react-icons/bi';
 
 const Navbar = () => {
     // const {user, handleSingOut} = useContext(AuthContext);
@@ -74,16 +77,22 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                            <button className="btn btn-primary text-white text-base font-normal px-6 tracking-wider">Log Out</button>
+                            <button className="btn btn-primary text-white text-base font-normal px-6 tracking-wider">
+                                <ImExit size={22}></ImExit>
+                                Log Out</button>
                         </div>
                         :
                         <div className='flex items-center gap-4'>
                             <Link to='login'>
-                                <button className="btn btn-primary text-white text-base font-normal px-6 tracking-wider hover:bg-secondary">Login</button>
+                                <button className="btn btn-primary text-white text-base font-normal px-6 tracking-wider hover:bg-secondary">
+                                <BiLogInCircle size={22}></BiLogInCircle>
+                                Login</button>
                             </Link>
-                                <span className='font-bold hidden md:block'>Or</span>
+                                <span className='font-bold hidden md:block text-primary'>Or</span>
                             <Link to='register' className='hidden md:block'>
-                                <button className="btn btn-outline border-primary border-2 text-base text-white font-normal tracking-wider hover:bg-primary">Register</button>
+                                <button className="btn btn-outline border-primary border-2 text-base text-white font-normal tracking-wider hover:bg-primary">
+                                <FaRegUserCircle size={22}></FaRegUserCircle>    
+                                Register</button>
                             </Link>
                         </div>
                     }
