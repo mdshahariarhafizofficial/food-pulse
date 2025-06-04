@@ -1,8 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/Pulse.png'
 import Lottie from 'lottie-react';
 import loginLottie from '../../assets/loginlottie.json' 
+import AuthContext from '../../Context/AuthContext';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 const Register = () => {
+    const { setUser, updateUser, createUser, googleSingIn } = useContext(AuthContext);
+    // Handle Register
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const {email, password, name, photoUrl } = Object.fromEntries(formData.entries());
+        const userInfo = { 
+            displayName: name,
+            photoURL: photoUrl,
+        };
+        
+        // Create User
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            Swal.fire({
+            icon: "success",
+            title: "Register Successful!",
+            showConfirmButton: false,
+            timer: 1500
+            });
+            updateUser(userInfo)
+            .then(() => {
+                setUser({...user, displayName: name, photoURL: photoUrl, })
+            })
+            .catch(() => {
+                setUser(user)
+            })
+        })
+        .catch(error => {
+            toast.error(error.message)
+        })
+    }
+
+    // Handle Google Sing In
+
     return (
         <div className='bg-[#f4f1ea] py-20'>
             <div className='grid grid-cols-12 items-center gap-6 lg:flex-row justify-between max-w-[1264px] mx-auto bg-white p-5 md:p-10 rounded-3xl'>
@@ -18,7 +58,7 @@ const Register = () => {
                             <h1 className="text-4xl font-extrabold text-center">Register Now!</h1>
                             <p className='text-center font-medium'>Please Enter Your Details</p>
                         </div>
-                        <form noValidate="" action="" className="space-y-6">
+                        <form onSubmit={handleRegister} className="space-y-6">
 
                             {/* Name */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
@@ -40,7 +80,7 @@ const Register = () => {
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
                                 <input type="password" name="password" id="password" placeholder="Password" className="input w-full px-4 py-6 rounded-md" />
                             </div>
-                            <button className="w-full py-6 text-center rounded-sm btn btn-primary ">Register</button>
+                            <button type='submit' className="w-full py-6 text-center rounded-sm btn btn-primary ">Register</button>
                         </form>
                         <div className='mt-4 mb-10'>
                             {/* Google */}

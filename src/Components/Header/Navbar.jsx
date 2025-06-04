@@ -1,16 +1,16 @@
 // import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../../assets/Pulse.png'
-// import { AuthContext } from '../../Context/AuthContext';
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import { ImExit } from 'react-icons/im';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { BiLogInCircle } from 'react-icons/bi';
+import { useContext } from 'react';
+import AuthContext from '../../Context/AuthContext';
 
 const Navbar = () => {
-    // const {user, handleSingOut} = useContext(AuthContext);
-    const user = false;
+    const {user, handleSingOut} = useContext(AuthContext);
     const menu = <>
             <li><NavLink to='/' 
             className={ ({isActive}) => isActive? 'text-primary border-b-2 rounded-none font-bold' : 'lg:text-white' }
@@ -77,7 +77,7 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                            <button className="btn btn-primary text-white text-base font-normal px-6 tracking-wider">
+                            <button onClick={handleSingOut} className="btn btn-primary text-white text-base font-normal px-6 tracking-wider">
                                 <ImExit size={22}></ImExit>
                                 Log Out</button>
                         </div>
