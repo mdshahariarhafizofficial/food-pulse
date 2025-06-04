@@ -18,19 +18,7 @@ const AuthProvider = ({children}) => {
 
     // Sing in with Google
     const googleSingIn = () => {
-        signInWithPopup(auth, googleProvider)
-        .then(result => {
-            setUser(result.user);
-            Swal.fire({
-            icon: "success",
-            title: "Sing In Successful!",
-            showConfirmButton: false,
-            timer: 1500
-            });
-        })
-        .catch(error => {
-           toast.error(error.message)
-        })
+        return signInWithPopup(auth, googleProvider)
     }
 
     // Current User
