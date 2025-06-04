@@ -1,10 +1,53 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../assets/Pulse.png'
 import Lottie from 'lottie-react';
 import loginLottie from '../../assets/loginlottie.json' 
 import AuthContext from '../../Context/AuthContext';
+import toast from 'react-hot-toast';
 const Login = () => {
-    const {setUser, googleSingIn} = useContext(AuthContext);
+    const {setUser, logInUser, googleSingIn} = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState("");
+
+    // Handle Login 
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+    // Password Validation
+    const lowercase = /(?=.*[a-z])/;
+    const uppercase = /(?=.*[A-Z])/;
+    const digit = /(?=.*\d)/;
+    const length = /.{6,}/;
+    if (!lowercase.test(password)) {
+      setErrorMessage("Must have a Lowercase letter in the password ");
+      return;
+    } else if (!uppercase.test(password)) {
+      setErrorMessage("Must have a Uppercase letter in the password ");
+      return;
+    } else if (!digit.test(password)) {
+      setErrorMessage("Must have a Digit in the password ");
+      return;
+    } else if (!length.test(password)) {
+      setErrorMessage("Length must be at least 6 character");
+      return;
+    } else {
+      setErrorMessage("");
+    }
+
+    // Login User
+    logInUser(email, password)
+    .then(result => {
+        setUser(result.user)
+        toast.success('Login Successful!')
+    })
+    .catch(error => {
+        toast.error(error.message)
+    })
+
+    }
+
+
     return (
         <div className='bg-[#f4f1ea] py-20'>
             <div className='grid grid-cols-12 items-center gap-6 lg:flex-row justify-between max-w-[1264px] mx-auto bg-white p-5 md:p-10 rounded-3xl'>
@@ -20,17 +63,18 @@ const Login = () => {
                             <h1 className="text-4xl font-extrabold text-center">Welcome Back</h1>
                             <p className='text-center font-medium'>Please Enter Your Details</p>
                         </div>
-                        <form noValidate="" action="" className="space-y-6">
+                        <form onSubmit={handleLogin} className="space-y-6">
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
                                 <input type="email" name="email" id="email" placeholder="@Email" className="input w-full px-4 py-6 rounded-md" />
                             </div>
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
                                 <input type="password" name="password" id="password" placeholder="Password" className="input w-full px-4 py-6 rounded-md" />
+                                <p className="text-sm text-red-600">{errorMessage}</p>
                                 <div className="flex justify-end text-base mt-2  text-primary" bis_skin_checked="1">
                                     <a rel="noopener noreferrer" href="#">Forgot Password?</a>
                                 </div>
                             </div>
-                            <button className="w-full py-6 text-center rounded-sm btn btn-primary ">Login</button>
+                            <button type='submit' className="w-full py-6 text-center rounded-sm btn btn-primary ">Login</button>
                         </form>
                         <div className='mt-4 mb-10'>
                             {/* Google */}

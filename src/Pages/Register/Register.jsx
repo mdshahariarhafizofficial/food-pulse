@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../assets/Pulse.png'
 import Lottie from 'lottie-react';
 import loginLottie from '../../assets/loginlottie.json' 
@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 const Register = () => {
     const { setUser, updateUser, createUser, googleSingIn } = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState("");
     // Handle Register
     const handleRegister = (e) => {
         e.preventDefault();
@@ -17,6 +18,27 @@ const Register = () => {
             displayName: name,
             photoURL: photoUrl,
         };
+
+    // Password Validation
+    const lowercase = /(?=.*[a-z])/;
+    const uppercase = /(?=.*[A-Z])/;
+    const digit = /(?=.*\d)/;
+    const length = /.{6,}/;
+    if (!lowercase.test(password)) {
+      setErrorMessage("Must have a Lowercase letter in the password ");
+      return;
+    } else if (!uppercase.test(password)) {
+      setErrorMessage("Must have a Uppercase letter in the password ");
+      return;
+    } else if (!digit.test(password)) {
+      setErrorMessage("Must have a Digit in the password ");
+      return;
+    } else if (!length.test(password)) {
+      setErrorMessage("Length must be at least 6 character");
+      return;
+    } else {
+      setErrorMessage("");
+    }
         
         // Create User
         createUser(email, password)
@@ -78,6 +100,7 @@ const Register = () => {
                             {/* Password */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
                                 <input type="password" name="password" id="password" placeholder="Password" className="input w-full px-4 py-6 rounded-md" />
+                                <p className="text-sm text-red-600">{errorMessage}</p>
                             </div>
                             <button type='submit' className="w-full py-6 text-center rounded-sm btn btn-primary ">Register</button>
                         </form>
