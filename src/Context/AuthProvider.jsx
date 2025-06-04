@@ -3,6 +3,7 @@ import AuthContext from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from '../Firebase/firebase.config';
 import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const AuthProvider = ({children}) => {
     const googleProvider = new GoogleAuthProvider();
@@ -19,10 +20,16 @@ const AuthProvider = ({children}) => {
     const googleSingIn = () => {
         signInWithPopup(auth, googleProvider)
         .then(result => {
-            setUser(result.user)
+            setUser(result.user);
+            Swal.fire({
+            icon: "success",
+            title: "Sing In Successful!",
+            showConfirmButton: false,
+            timer: 1500
+            });
         })
         .catch(error => {
-            console.log(error);
+           toast.error(error.message)
         })
     }
 

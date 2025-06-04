@@ -1,10 +1,11 @@
 // import React, { useContext } from 'react';
+import { useContext } from 'react';
 import logo from '../../assets/Pulse.png'
 import { NavLink } from 'react-router';
-// import { AuthContext } from '../../Context/AuthContext';
+import AuthContext from '../../Context/AuthContext';
+
 const Footer = () => {
-        // const {user} = useContext(AuthContext);
-        const user = true;
+        const {user} = useContext(AuthContext);
     const menu = <>
             <li><NavLink to='/' 
             className={ ({isActive}) => isActive? 'text-primary border-b-2 rounded-none font-bold' : 'text-white' }
