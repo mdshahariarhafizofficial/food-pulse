@@ -105,23 +105,31 @@ const Register = () => {
 
                             {/* Name */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="text" name="name" id="name" placeholder="Name" className="input w-full px-4 py-6 rounded-md" />
+                                <input type="text" name="name" id="name" placeholder="Name" 
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
                             </div>
         
 
                             {/* Photo */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="url" name="photoUrl" id="photoUrl" placeholder="PhotoURL" className="input w-full px-4 py-6 rounded-md" />
+                                <input type="url" name="photoUrl" id="photoUrl" placeholder="PhotoURL"
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
                             </div>
 
                             {/* Email */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="email" name="email" id="email" placeholder="@Email" className="input w-full px-4 py-6 rounded-md" />
+                                <input type="email" name="email" id="email" placeholder="@Email"
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
                             </div>
 
                             {/* Password */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="password" name="password" id="password" placeholder="Password" className="input w-full px-4 py-6 rounded-md" />
+                                <input type="password" name="password" id="password" placeholder="Password" 
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
                                 <p className="text-sm text-red-600">{errorMessage}</p>
                             </div>
                             <button type='submit' className="w-full py-6 text-center rounded-sm btn btn-primary ">Register</button>

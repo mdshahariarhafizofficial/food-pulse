@@ -91,10 +91,14 @@ const Login = () => {
                         </div>
                         <form onSubmit={handleLogin} className="space-y-6">
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="email" name="email" id="email" placeholder="@Email" className="input w-full px-4 py-6 rounded-md" />
+                                <input type="email" name="email" id="email" placeholder="@Email"
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
                             </div>
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="password" name="password" id="password" placeholder="Password" className="input w-full px-4 py-6 rounded-md" />
+                                <input type="password" name="password" id="password" placeholder="Password" 
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
                                 <p className="text-sm text-red-600">{errorMessage}</p>
                                 <div className="flex justify-end text-base mt-2  text-primary" bis_skin_checked="1">
                                     <a rel="noopener noreferrer" href="#">Forgot Password?</a>
