@@ -68,6 +68,7 @@ const Navbar = () => {
                             data-tooltip-id="my-tooltip"
                             data-tooltip-content={`${user&& user.displayName }`}
                             data-tooltip-place="bottom"
+                            className='hidden md:block'
                             >
                                 <div className="avatar">
                                 <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">

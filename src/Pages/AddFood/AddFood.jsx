@@ -19,9 +19,9 @@ const AddFood = () => {
                         alt="logo"
                         className='w-40 mx-auto'
                         />
-                        <div className='my-10'>
-                            <h1 className="text-4xl font-extrabold text-center">Add New Food</h1>
-                            <p className='text-center font-medium'>Track your food before it expires!</p>
+                        <div className='my-5 space-y-3'>
+                            <h1 className="text-4xl md:text-6xl font-extrabold text-center">Add New Food</h1>
+                            <p className='text-center font-medium text-accent'>Track your food before it expires!</p>
                         </div>
                         <form className="space-y-6">
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
