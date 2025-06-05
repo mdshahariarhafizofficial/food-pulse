@@ -5,8 +5,31 @@ import loginLottie from '../../assets/addfood.json';
 import bannerImg from '../../assets/HealtyBannerAd.png'
 import { IoFastFoodOutline } from 'react-icons/io5';
 import AuthContext from '../../Context/AuthContext';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 const AddFood = () => {
      const {user} = useContext(AuthContext);
+
+    //  Handle Add Food
+    const handleAddFood = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formDate = new FormData(form);
+        const newFood = Object.fromEntries(formDate.entries());
+        console.log(newFood);
+        
+        // Send Data to DB
+        axios.post('http://localhost:8000/foods', newFood)
+        .then(res => {
+            if (res.data.insertedId) {
+                toast.success('New Food Added Successfully!')
+            }
+        })
+        .catch(error => {
+           toast.error(error.message)
+        })
+        form.reset();
+    };
     return (
         <div className='bg-[#f4f1ea] pb-20 pt-4'>
             <div>
@@ -25,7 +48,7 @@ const AddFood = () => {
                             <h1 className="text-4xl md:text-6xl font-extrabold text-center">Add New Food</h1>
                             <p className='text-center font-medium text-accent'>Track your food before it expires!</p>
                         </div>
-                        <form className="space-y-6">
+                        <form onSubmit={handleAddFood} className="space-y-6">
 
 
                             {/* Email */}
@@ -70,8 +93,11 @@ const AddFood = () => {
                                 {/* Category */}
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
                                     <label htmlFor="foodTitle" className="block text-secondary font-bold">*Select a category</label>
-                                    <select defaultValue="Select a category" className="select select-lg w-full rounded-md text-accent">
-                                        <option disabled={true}>Select a category</option>
+                                    <select defaultValue="Select a category" 
+                                    required
+                                    className="select select-lg w-full rounded-md text-accent"
+                                    >
+                                        <option value=''>Select a category</option>
                                         <option>Dairy</option>
                                         <option>Meat</option>
                                         <option>Vegetables</option>
@@ -111,7 +137,9 @@ const AddFood = () => {
                                 <label htmlFor="description" className="block text-secondary font-bold">*Description</label>
                                 <textarea className="textarea w-full px-4 py-6 rounded-md"
                                 name='description'
-                                placeholder="Write Description..."></textarea>
+                                placeholder="Write Description..."
+                                required
+                                ></textarea>
                             </div>
 
 
