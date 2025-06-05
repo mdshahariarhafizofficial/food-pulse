@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/Pulse.png'
 import Lottie from 'lottie-react';
 import loginLottie from '../../assets/addfood.json';
 import bannerImg from '../../assets/HealtyBannerAd.png'
 import { IoFastFoodOutline } from 'react-icons/io5';
+import AuthContext from '../../Context/AuthContext';
 const AddFood = () => {
+     const {user} = useContext(AuthContext);
     return (
-        <div className='bg-[#f4f1ea] pb-20'>
+        <div className='bg-[#f4f1ea] pb-20 pt-4'>
             <div>
-                <img className='max-w-[1500px] mx-auto w-full rounded-b-2xl ' src={bannerImg} alt="" />
+                <img className='max-w-[1500px] mx-auto w-full object-cover rounded-2xl ' src={bannerImg} alt="" />
             </div>
             <div className='grid grid-cols-12 items-center gap-6 lg:flex-row justify-between max-w-[1500px] mx-auto bg-white p-5 md:p-10 rounded-3xl my-10'>
 
                 {/* Form */}
-                <div className='col-span-12 lg:col-span-8 flex justify-center lg:justify-start'>
+                <div className='col-span-12 lg:col-span-7 flex justify-center lg:justify-start'>
                     <div className="w-full max-w-4xl md:px-10 px-5 py-12 space-y-3 rounded-3xl bg-[#f4f1ea]" bis_skin_checked="1">
                         <img src={logo} 
                         alt="logo"
@@ -24,16 +26,96 @@ const AddFood = () => {
                             <p className='text-center font-medium text-accent'>Track your food before it expires!</p>
                         </div>
                         <form className="space-y-6">
+
+
+                            {/* Email */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="email" name="email" id="email" placeholder="@Email"
+                                <label htmlFor="Email" className="block text-secondary font-bold">User Email</label>
+                                <input type="email" name="email" id="email" placeholder="Email"
+                                value={user?.email}
+                                onChange={e => e.target}
+                                readOnly
                                 required
                                 className="input w-full px-4 py-6 rounded-md" />
                             </div>
+
+
+
+                            {/* Title */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                <input type="password" name="password" id="password" placeholder="Password" 
+                                <label htmlFor="foodTitle" className="block text-secondary font-bold">*Food Title</label>
+                                <input type="text" name="foodTitle" id="foodTitle" placeholder="Food Title"
                                 required
                                 className="input w-full px-4 py-6 rounded-md" />
                             </div>
+
+                            {/* Food Image */}
+                            <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                <label htmlFor="foodImage" className="block text-secondary font-bold">*Food Image Url</label>
+                                <input type="url" name="foodImage" id="foodImage" placeholder="Food Image Url"
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
+                            </div>
+
+                            {/* Category & Exp Date */}
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
+                                {/* Expiry Date */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="expiryDate" className="block text-secondary font-bold">*Expiry Date</label>
+                                    <input type="date" name="expiryDate" id="expiryDate" placeholder="Expiry Date"
+                                    required
+                                    className="input w-full px-4 py-6 rounded-md" />
+                                </div>
+
+                                {/* Category */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="foodTitle" className="block text-secondary font-bold">*Select a category</label>
+                                    <select defaultValue="Select a category" className="select select-lg w-full rounded-md text-accent">
+                                        <option disabled={true}>Select a category</option>
+                                        <option>Dairy</option>
+                                        <option>Meat</option>
+                                        <option>Vegetables</option>
+                                        <option>Snacks</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            {/* Added Date & Quantity */}
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
+                                {/* Added Date */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="addedDate" className="block text-secondary font-bold">Added Date</label>
+                                    <input type="date" name="addedDate" id="addedDate" 
+                                    value={new Date().toISOString().split('T')[0]}
+                                    onChange={e => e.target}
+                                    placeholder="Added Date"
+                                    required
+                                    readOnly
+                                    className="input w-full px-4 py-6 rounded-md" />
+                                </div>
+
+                                {/* Quantity */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="quantity" className="block text-secondary font-bold">*Quantity</label>
+                                    <input type="number" name="quantity" id="quantity" placeholder="Food Quantity"
+                                    required
+                                    className="input w-full px-4 py-6 rounded-md" />
+                                </div>
+                            </div>
+
+
+                            {/* Description */}
+                            <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                <label htmlFor="description" className="block text-secondary font-bold">*Description</label>
+                                <textarea className="textarea w-full px-4 py-6 rounded-md"
+                                name='description'
+                                placeholder="Write Description..."></textarea>
+                            </div>
+
+
+
                             <button type='submit' className="w-full py-6 text-center rounded-sm btn btn-primary text-xl">
                                 <IoFastFoodOutline size={30}></IoFastFoodOutline>
                                 Add Food</button>
@@ -43,7 +125,7 @@ const AddFood = () => {
                 </div>
 
                 {/* Lottie */}
-                <div className='col-span-12 lg:col-span-4 flex items-center justify-center'>
+                <div className='col-span-12 lg:col-span-5 flex items-center justify-center'>
                     <Lottie 
                     animationData={loginLottie}
                     style={{width: '600px'}}
