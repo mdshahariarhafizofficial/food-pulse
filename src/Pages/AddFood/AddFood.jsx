@@ -7,9 +7,10 @@ import { IoFastFoodOutline } from 'react-icons/io5';
 import AuthContext from '../../Context/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
 const AddFood = () => {
      const {user} = useContext(AuthContext);
-
+     const navigate = useNavigate();
     //  Handle Add Food
     const handleAddFood = (e) => {
         e.preventDefault();
@@ -22,16 +23,17 @@ const AddFood = () => {
         axios.post('http://localhost:8000/foods', newFood)
         .then(res => {
             if (res.data.insertedId) {
-                toast.success('New Food Added Successfully!')
+                toast.success('New Food Added Successfully!');
+                navigate('/my-items');
             }
         })
         .catch(error => {
-           toast.error(error.message)
+           toast.error(error.message);
         })
         form.reset();
     };
     return (
-        <div className='bg-[#f4f1ea] pb-20 pt-4'>
+        <div className='bg-[#f4f1ea] pb-20 pt-4 px-5'>
             <div>
                 <img className='max-w-[1500px] mx-auto w-full object-cover rounded-2xl ' src={bannerImg} alt="" />
             </div>
