@@ -1,17 +1,58 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link } from 'react-router';
 import { FaEdit, FaInfoCircle } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const MyItemsTable = ({FetchFoods}) => {
-    const myFoods = use(FetchFoods);
+    const data = use(FetchFoods);
+    const [myFoods, setMyFoods] = useState(data);
     console.log(myFoods);
-    
+
+    // Handle Delete
+    const handleDelete = (id) => {
+        console.log(id);
+        
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`http://localhost:8000/foods/${id}`)
+            .then((res) => {
+                if (res.data.deletedCount) {
+                    const remainingFoods = data.filter(food => food._id !== id);
+                    setMyFoods(remainingFoods);
+                    Swal.fire({
+                    title: "Deleted!",
+                    text: "Your Food has been deleted.",
+                    icon: "success"
+                    });                    
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+
+        }
+        });
+    }
+
+    // update Foods
+
+
     return (
         <div className="overflow-x-auto">
         <table className="table text-center">
             {/* head */}
-            <thead className='text-blue-900'>
+            <thead className='text-secondary'>
             <tr className='border-primary border-b-2'>
                 <th>
                     No.
@@ -67,7 +108,7 @@ const MyItemsTable = ({FetchFoods}) => {
                                         <FaEdit 
                                         size={22} color='#1e0a3c'></FaEdit>
                                     </button>
-                                    <button className=" join-item">
+                                    <button onClick={() => handleDelete(food._id)} className=" join-item">
                                         <MdDeleteForever
                                         size={25} color='red'
                                         ></MdDeleteForever>
@@ -79,9 +120,11 @@ const MyItemsTable = ({FetchFoods}) => {
                 </tr>
                 )
             }
-
             </tbody>
         </table>
+
+        {/* Modal */}
+
         </div>
     );
 };
