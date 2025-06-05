@@ -7,6 +7,8 @@ import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import AddFood from "../Pages/AddFood/AddFood";
 import MyItems from "../Pages/MyItems/MyItems";
+import Fridge from "../Pages/Fridge/Fridge";
+import Loading from "../Pages/Loading/Loading";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,12 @@ const router = createBrowserRouter([
             {
                 path: '/my-items',
                 element: <PrivateRoute><MyItems></MyItems></PrivateRoute>
+            },
+            {
+                path: '/fridge',
+                Component: Fridge,
+                loader: () => fetch('http://localhost:8000/foods'),
+                hydrateFallbackElement: <Loading></Loading>
             }
         ]
     },
