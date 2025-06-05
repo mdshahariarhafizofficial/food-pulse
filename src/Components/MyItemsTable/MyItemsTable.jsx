@@ -5,10 +5,13 @@ import { MdDeleteForever } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import logo from '../../assets/Pulse.png';
+import AuthContext from '../../Context/AuthContext';
 
 const MyItemsTable = ({FetchFoods}) => {
     const data = use(FetchFoods);
     const [myFoods, setMyFoods] = useState(data);
+    const [singleFood, setSingleFood] = useState({});
     console.log(myFoods);
 
     // Handle Delete
@@ -45,7 +48,43 @@ const MyItemsTable = ({FetchFoods}) => {
         });
     }
 
-    // update Foods
+    // Single Food data
+    const singleFoodData = (id) => {
+        const findFood = data.find(food => food._id === id);
+        setSingleFood({...findFood});       
+    }
+
+    // Handle Update
+    const handleUpdate = (e, id) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const updateInfo = Object.fromEntries(formData.entries());
+        
+        // Update data
+        axios.put(`http://localhost:8000/foods/${id}`, updateInfo)
+        .then(res => {
+            if (res.data.modifiedCount) {
+                fetch(`http://localhost:8000/foods/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    const updatedFood = myFoods.map(food => food._id === data._id ? data : food);
+                    setMyFoods(updatedFood)
+                })
+                document.getElementById('my_modal_3').close();
+                Swal.fire({
+                icon: "success",
+                title: "Update Info has been saved",
+                showConfirmButton: false,
+                timer: 1500
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error.message);
+            
+        })
+    }
 
 
     return (
@@ -59,7 +98,7 @@ const MyItemsTable = ({FetchFoods}) => {
                 </th>
                 <th>Image</th>
                 <th>Food Name</th>
-                <th>Added Date</th>
+                <th>Category</th>
                 <th>Quantity</th>
                 <th>Expiry Date</th>
                 <th>Auction</th>
@@ -77,8 +116,8 @@ const MyItemsTable = ({FetchFoods}) => {
                         <div className="avatar">
                         <div className="mask mask-circle h-12 w-12">
                             <img
-                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                            alt="Avatar Tailwind CSS Component" />
+                            src={food.foodImage}
+                            alt="food img" />
                         </div>
                         </div>
                         <div>
@@ -90,7 +129,7 @@ const MyItemsTable = ({FetchFoods}) => {
                         {food.foodTitle}    
                         </div>                        
                     </td>
-                    <td className='text-accent'>{food.addedDate}</td>
+                    <td className='text-accent'>{food.category}</td>
                     <td className='font-bold text-md'>{food.quantity}</td>
                     <td className='text-primary font-semibold'>{food.expiryDate}</td>
 
@@ -104,7 +143,11 @@ const MyItemsTable = ({FetchFoods}) => {
                                         </button>
                                     </Link>
                                     {/* Edit */}
-                                    <button className=" join-item">
+                                    <button onClick={()=>{
+                                        document.getElementById('my_modal_3').showModal();
+                                        singleFoodData(food._id)
+                                        }} 
+                                        className=" join-item">
                                         <FaEdit 
                                         size={22} color='#1e0a3c'></FaEdit>
                                     </button>
@@ -124,6 +167,136 @@ const MyItemsTable = ({FetchFoods}) => {
         </table>
 
         {/* Modal */}
+        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+        <dialog id="my_modal_3" className="modal">
+        <div className="modal-box max-w-4xl">
+            <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-primary absolute right-2 top-2">✕</button>
+            </form>
+
+                {/* Form */}
+                <div className=''>
+                    <div className="w-full max-w-4xl md:px-10 px-5 py-12 space-y-3 rounded-3xl bg-[#f4f1ea]" bis_skin_checked="1">
+                        <img src={logo} 
+                        alt="logo"
+                        className='w-40 mx-auto'
+                        />
+                        <div className='my-5 space-y-3'>
+                            <h1 className="text-4xl md:text-6xl font-extrabold text-center">Update Food Information</h1>
+                            <p className='text-center font-medium text-accent'>Track your food before it expires!</p>
+                        </div>
+                        <form onSubmit={(e) => handleUpdate(e,singleFood._id)} className="space-y-6">
+
+
+                            {/* Email */}
+                            <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                <label htmlFor="Email" className="block text-secondary font-bold">User Email</label>
+                                <input type="email" name="email" id="email" placeholder="Email"
+                                defaultValue={singleFood.email}
+                                readOnly
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
+                            </div>
+
+                            {/* Title */}
+                            <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                <label htmlFor="foodTitle" className="block text-secondary font-bold">*Food Title</label>
+                                <input type="text" name="foodTitle" id="foodTitle"
+                                defaultValue={singleFood.foodTitle}
+                                placeholder="Food Title"
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
+                            </div>
+
+                            {/* Food Image */}
+                            <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                <label htmlFor="foodImage" className="block text-secondary font-bold">*Food Image Url</label>
+                                <input type="url" name="foodImage" id="foodImage" 
+                                defaultValue={singleFood.foodImage}
+                                placeholder="Food Image Url"
+                                required
+                                className="input w-full px-4 py-6 rounded-md" />
+                            </div>
+
+                            {/* Category & Exp Date */}
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
+                                {/* Expiry Date */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="expiryDate" className="block text-secondary font-bold">*Expiry Date</label>
+                                    <input type="date" name="expiryDate" id="expiryDate"
+                                    defaultValue={singleFood.expiryDate}
+                                    placeholder="Expiry Date"
+                                    required
+                                    className="input w-full px-4 py-6 rounded-md" />
+                                </div>
+
+                                {/* Category */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="foodTitle" className="block text-secondary font-bold">*Select a category</label>
+                                    <select defaultValue="Select a category" 
+                                    name='category'
+                                    required
+                                    className="select select-lg w-full rounded-md text-accent"
+                                    >
+                                        <option
+                                        defaultValue={singleFood?.category}
+                                        >{singleFood?.category}</option>
+                                        <option>Dairy</option>
+                                        <option>Meat</option>
+                                        <option>Vegetables</option>
+                                        <option>Snacks</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            {/* Added Date & Quantity */}
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
+                                {/* Added Date */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="addedDate" className="block text-secondary font-bold">Added Date</label>
+                                    <input type="date" name="addedDate" id="addedDate" 
+                                    defaultValue={singleFood.addedDate}
+                                    placeholder="Added Date"
+                                    required
+                                    readOnly
+                                    className="input w-full px-4 py-6 rounded-md" />
+                                </div>
+
+                                {/* Quantity */}
+                                <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                    <label htmlFor="quantity" className="block text-secondary font-bold">*Quantity</label>
+                                    <input type="number" name="quantity" id="quantity" 
+                                    defaultValue={singleFood.quantity}
+                                    placeholder="Food Quantity"
+                                    required
+                                    className="input w-full px-4 py-6 rounded-md" />
+                                </div>
+                            </div>
+
+
+                            {/* Description */}
+                            <div className="space-y-1 text-sm" bis_skin_checked="1">
+                                <label htmlFor="description" className="block text-secondary font-bold">*Description</label>
+                                <textarea className="textarea w-full px-4 py-6 rounded-md"
+                                name='description'
+                                defaultValue={singleFood.description}
+                                placeholder="Write Description..."
+                                required
+                                ></textarea>
+                            </div>
+
+                            <button type='submit' className="w-full py-6 text-center rounded-sm btn btn-primary text-xl">
+                                Update food information</button>
+                        </form>
+
+                    </div>
+                </div>
+
+        </div>
+        </dialog>
 
         </div>
     );

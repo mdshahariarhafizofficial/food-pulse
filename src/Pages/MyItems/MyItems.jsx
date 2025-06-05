@@ -11,7 +11,7 @@ const MyItems = () => {
             <div className='max-w-[1500px] mx-auto'>
 
                 <div className='bg-[#151515] py-5 rounded-xl'>
-                    <h2 className='text-6xl font-extrabold text-center text-primary'>My Items</h2>
+                    <h2 className='text-6xl font-extrabold text-center text-primary'>My Food Items</h2>
                     <div className='divider divider-primary w-56 mx-auto'></div>
                 </div>
 

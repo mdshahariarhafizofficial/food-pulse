@@ -95,7 +95,9 @@ const AddFood = () => {
                                 {/* Category */}
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
                                     <label htmlFor="foodTitle" className="block text-secondary font-bold">*Select a category</label>
-                                    <select defaultValue="Select a category" 
+                                    <select
+                                    name='category'
+                                    defaultValue="Select a category" 
                                     required
                                     className="select select-lg w-full rounded-md text-accent"
                                     >
