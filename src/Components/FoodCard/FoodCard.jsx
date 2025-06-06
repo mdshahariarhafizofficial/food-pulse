@@ -2,6 +2,7 @@ import { CalendarDays, ClockAlert, HandPlatter, MoveRight } from 'lucide-react';
 import React from 'react';
 import { BiCategory } from 'react-icons/bi';
 import { MdOutlineFastfood } from 'react-icons/md';
+import { Link } from 'react-router';
 
 const FoodCard = ({food}) => {
     const {_id, quantity, foodTitle, foodImage, expiryDate, category} = food;
@@ -44,10 +45,12 @@ const FoodCard = ({food}) => {
                 </div>
             </div>
             <div className="p-6 pt-0">
-                <button data-ripple-light="true" type="button" className="btn btn-primary w-full text-lg">
-                See Details
-                <MoveRight />
-                </button>
+                <Link to={`/food-details/${_id}`}>
+                    <button data-ripple-light="true" type="button" className="btn btn-primary w-full text-lg">
+                    See Details
+                    <MoveRight />
+                    </button>
+                </Link>
             </div>
             </div>
         </div>
