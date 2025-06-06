@@ -137,7 +137,7 @@ const MyItemsTable = ({FetchFoods}) => {
                         <td>{
                             <div>
                                 <div className="join flex justify-center items-center gap-7">
-                                    <Link>
+                                    <Link to={`/foods/${food._id}`}>
                                         <button className="flex join-item items-center">
                                             <FaInfoCircle size={22} color='#ff5722'></FaInfoCircle>
                                         </button>
