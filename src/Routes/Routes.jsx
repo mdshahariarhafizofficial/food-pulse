@@ -9,6 +9,7 @@ import AddFood from "../Pages/AddFood/AddFood";
 import MyItems from "../Pages/MyItems/MyItems";
 import Fridge from "../Pages/Fridge/Fridge";
 import Loading from "../Pages/Loading/Loading";
+import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +40,14 @@ const router = createBrowserRouter([
                 Component: Fridge,
                 loader: () => fetch('http://localhost:8000/foods'),
                 hydrateFallbackElement: <Loading></Loading>
+            },
+            {
+                path: '/foods/:id',
+                element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:8000/foods/${params.id}`),
+                hydrateFallbackElement: <Loading></Loading>
             }
+
         ]
     },
     {

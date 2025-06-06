@@ -45,7 +45,7 @@ const FoodCard = ({food}) => {
                 </div>
             </div>
             <div className="p-6 pt-0">
-                <Link to={`/food-details/${_id}`}>
+                <Link to={`/foods/${_id}`}>
                     <button data-ripple-light="true" type="button" className="btn btn-primary w-full text-lg">
                     See Details
                     <MoveRight />
