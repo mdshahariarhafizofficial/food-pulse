@@ -258,7 +258,7 @@ const MyItemsTable = ({FetchFoods}) => {
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
                                     <label htmlFor="addedDate" className="block text-secondary font-bold">Added Date</label>
                                     <input type="date" name="addedDate" id="addedDate" 
-                                    defaultValue={singleFood.addedDate}
+                                    defaultValue={singleFood?.addedDate?.split('T')[0]}
                                     placeholder="Added Date"
                                     required
                                     readOnly

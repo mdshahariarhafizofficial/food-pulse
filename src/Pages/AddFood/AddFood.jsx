@@ -16,7 +16,9 @@ const AddFood = () => {
         e.preventDefault();
         const form = e.target;
         const formDate = new FormData(form);
-        const newFood = Object.fromEntries(formDate.entries());
+        const addedDate = new Date();
+        const foodData = Object.fromEntries(formDate.entries());
+        const newFood = {...foodData, addedDate};
         console.log(newFood);
         
         // Send Data to DB
@@ -82,17 +84,7 @@ const AddFood = () => {
                                 className="input w-full px-4 py-6 rounded-md" />
                             </div>
 
-                            {/* Category & Exp Date */}
-                            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
-                                {/* Expiry Date */}
-                                <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                    <label htmlFor="expiryDate" className="block text-secondary font-bold">*Expiry Date</label>
-                                    <input type="date" name="expiryDate" id="expiryDate" placeholder="Expiry Date"
-                                    required
-                                    className="input w-full px-4 py-6 rounded-md" />
-                                </div>
-
-                                {/* Category */}
+                                                            {/* Category */}
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
                                     <label htmlFor="foodTitle" className="block text-secondary font-bold">*Select a category</label>
                                     <select
@@ -110,19 +102,13 @@ const AddFood = () => {
 
                                 </div>
 
-                            </div>
-
-                            {/* Added Date & Quantity */}
+                            {/* Category & Exp Date */}
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
-                                {/* Added Date */}
+                                {/* Expiry Date */}
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
-                                    <label htmlFor="addedDate" className="block text-secondary font-bold">Added Date</label>
-                                    <input type="date" name="addedDate" id="addedDate" 
-                                    value={new Date().toISOString().split('T')[0]}
-                                    onChange={e => e.target}
-                                    placeholder="Added Date"
+                                    <label htmlFor="expiryDate" className="block text-secondary font-bold">*Expiry Date</label>
+                                    <input type="date" name="expiryDate" id="expiryDate" placeholder="Expiry Date"
                                     required
-                                    readOnly
                                     className="input w-full px-4 py-6 rounded-md" />
                                 </div>
 
@@ -134,6 +120,7 @@ const AddFood = () => {
                                     className="input w-full px-4 py-6 rounded-md" />
                                 </div>
                             </div>
+
 
 
                             {/* Description */}
