@@ -6,7 +6,12 @@ import { Link } from 'react-router';
 
 const FoodCard = ({food}) => {
     const {_id, quantity, foodTitle, foodImage, expiryDate, category} = food;
-    const date = new Date();
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const expDate = new Date(expiryDate);
+    expDate.setHours(0,0,0,0);
+
+    const isExpired = expDate < today;
 
     return (
         <div className='mt-10'>
@@ -17,7 +22,7 @@ const FoodCard = ({food}) => {
             <div className="p-6 relative">
             {/* Badge */}
             {
-                new Date(expiryDate) < date ? 
+                isExpired ? 
                 <div className="absolute right-5 top-3 badge bg-red-500 text-white">
                     <ClockAlert size={18} />
                     Expired

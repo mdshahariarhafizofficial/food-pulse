@@ -14,7 +14,12 @@ const FoodDetails = () => {
     const data = useLoaderData();
     const [notes, setNotes] = useState([]);
     const {_id, quantity, foodTitle, foodImage, expiryDate, category, description, addedDate, email} = data;
-    const date = new Date();
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const expDate = new Date(expiryDate);
+    expDate.setHours(0,0,0,0);
+    const isExpired = expDate < today;
+
     const handleAddNote = (e, id) => {
         e.preventDefault();
         const noteText = e.target.noteText.value;
@@ -101,7 +106,7 @@ const FoodDetails = () => {
                                 </div>
                                 {/* Badge */}
                                 {
-                                    new Date(expiryDate) < date && 
+                                    isExpired && 
                                     <div className="absolute right-0 top-0 badge bg-red-500 text-white">
                                         <ClockAlert size={18} />
                                         Expired
