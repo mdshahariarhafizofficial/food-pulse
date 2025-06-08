@@ -4,6 +4,9 @@ import FoodCard from '../../Components/FoodCard/FoodCard';
 
 const Fridge = () => {
     const data = useLoaderData();
+    const [filterValue, setFilterValue] = useState('');
+    console.log(filterValue);
+    
     const [loadMore, setLoadMore] = useState(false);
     const [foods, setFoods] = useState(data.slice(0,9));
     useEffect(() => {
@@ -14,7 +17,16 @@ const Fridge = () => {
             window.scrollTo(100, 0)
         }
     }, [data, loadMore])
-    console.log(data);
+    // console.log(data);
+    useEffect(() => {
+        if (filterValue !== "") {            
+            fetch(`http://localhost:8000/foods?category=${filterValue}`)
+            .then(res => res.json())
+            .then(data => {
+                setFoods(data)
+            })
+        }
+    }, [filterValue]);
     
     return (
         <div className='bg-[#f4f1ea] pb-20 pt-4 px-2'>
@@ -54,6 +66,7 @@ const Fridge = () => {
                                 {/* Category */}
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
                                     <select
+                                    onChange={(e) => setFilterValue(e.target.value)}
                                     name='category'
                                     defaultValue="Select a category" 
                                     required
@@ -82,14 +95,17 @@ const Fridge = () => {
                             }
                         </div>
                         
-                        <div onClick={() => setLoadMore(!loadMore)} className='text-center mt-10'>
-                            <button className='btn btn-secondary text-black text-xl px-8'>
-                            {
-                                loadMore? 'Shoe Less...':
-                                'Load More...'
-                            }
-                            </button>
-                        </div>                        
+                        {
+                            foods.length >= 9 &&
+                            <div className='text-center mt-10'>
+                                <button onClick={() => setLoadMore(!loadMore)}  className='btn btn-secondary text-black text-xl px-8'>
+                                {
+                                    loadMore? 'Shoe Less...':
+                                    'Load More...'
+                                }
+                                </button>
+                            </div>                        
+                        }
 
                     </div>
                 </div>
