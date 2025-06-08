@@ -26,7 +26,10 @@ const Fridge = () => {
                 setFoods(data)
             })
         }
-    }, [filterValue]);
+        else{
+            setFoods(data.slice(0,9))
+        }
+    }, [filterValue, data]);
     
     return (
         <div className='bg-[#f4f1ea] pb-20 pt-4 px-2'>
