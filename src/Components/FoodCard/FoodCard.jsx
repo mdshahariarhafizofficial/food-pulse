@@ -51,7 +51,7 @@ const FoodCard = ({food}) => {
             </div>
             <div className="p-6 pt-0">
                 <Link to={`/foods/${_id}`}>
-                    <button data-ripple-light="true" type="button" className="btn btn-primary w-full text-lg">
+                    <button onClick={ () => window.scrollTo(1,0)} data-ripple-light="true" type="button" className="btn btn-primary w-full text-lg">
                     See Details
                     <MoveRight />
                     </button>

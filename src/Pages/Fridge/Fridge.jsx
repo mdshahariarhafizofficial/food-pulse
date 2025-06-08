@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import FoodCard from '../../Components/FoodCard/FoodCard';
 
 const Fridge = () => {
     const data = useLoaderData();
+    const [loadMore, setLoadMore] = useState(false);
+    const [foods, setFoods] = useState(data.slice(0,9));
+    useEffect(() => {
+        if (loadMore) {
+            setFoods(data)
+        }else{
+            setFoods(data.slice(0, 9))
+            window.scrollTo(100, 0)
+        }
+    }, [data, loadMore])
     console.log(data);
     
     return (
@@ -62,13 +72,25 @@ const Fridge = () => {
                 </div>
 
                 <div className='bg-white md:p-6 lg:p-10 rounded-3xl mb-10 mt-5'>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 rounded-3xl bg-[#f4f1ea] p-5 lg:p-10'>
-                        {
-                            data.map(food => <FoodCard
-                            key={food._id}
-                            food = {food}
-                            ></FoodCard>)
-                        }
+                    <div className='rounded-3xl bg-[#f4f1ea] p-5 lg:p-10'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                            {
+                                foods.map(food => <FoodCard
+                                key={food._id}
+                                food = {food}
+                                ></FoodCard>)
+                            }
+                        </div>
+                        
+                        <div onClick={() => setLoadMore(!loadMore)} className='text-center mt-10'>
+                            <button className='btn btn-secondary text-black text-xl px-8'>
+                            {
+                                loadMore? 'Shoe Less...':
+                                'Load More...'
+                            }
+                            </button>
+                        </div>                        
+
                     </div>
                 </div>
 
