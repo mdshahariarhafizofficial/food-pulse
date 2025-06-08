@@ -5,10 +5,11 @@ import FoodCard from '../../Components/FoodCard/FoodCard';
 const Fridge = () => {
     const data = useLoaderData();
     const [filterValue, setFilterValue] = useState('');
-    console.log(filterValue);
     
     const [loadMore, setLoadMore] = useState(false);
     const [foods, setFoods] = useState(data.slice(0,9));
+
+    // Load more functionality
     useEffect(() => {
         if (loadMore) {
             setFoods(data)
@@ -18,6 +19,8 @@ const Fridge = () => {
         }
     }, [data, loadMore])
     // console.log(data);
+
+    // Filter by category
     useEffect(() => {
         if (filterValue !== "") {            
             fetch(`http://localhost:8000/foods?category=${filterValue}`)
@@ -27,9 +30,29 @@ const Fridge = () => {
             })
         }
         else{
-            setFoods(data.slice(0,9))
+            setFoods(data.slice(0, 9));
         }
     }, [filterValue, data]);
+
+    // Filter By Search
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const search = e.target.search.value;
+
+        // Send search value to db
+        if (search !== "") {            
+            fetch(`http://localhost:8000/foods?search=${search}`)
+            .then(res => res.json())
+            .then(data => {
+                setFoods(data)
+            })
+        }
+        else{
+            setFoods(data.slice(0, 9));
+        }
+        
+    }
+
     
     return (
         <div className='bg-[#f4f1ea] pb-20 pt-4 px-2'>
@@ -43,7 +66,7 @@ const Fridge = () => {
                         <div className='hidden lg:block lg:col-span-4'></div>
                         {/* Search */}
                         <div className='col-span-12 md:col-span-8 lg:col-span-4'>
-                            <form className='flex gap-0'>
+                            <form onSubmit={handleSearch} className='flex gap-0'>
                                 <label className="w-full flex items-center gap-1 pl-2 bg-white rounded-r-none rounded-l">
                                 <svg className="h-[1.3em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <g
@@ -59,7 +82,8 @@ const Fridge = () => {
                                 </svg>
                                     <input 
                                     className='w-full focus:outline-0'
-                                    type="search" required placeholder="Search" />
+                                    name='search'
+                                    type="search" placeholder="Search" />
                                 </label>
                                     <button className='btn btn-primary rounded-l-none text-white text-lg'>Search</button>
                             </form>
