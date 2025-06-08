@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import FoodCard from '../../Components/FoodCard/FoodCard';
-
+import dataNotFound from '../../assets/notFound.json'
+import Lottie from 'lottie-react';
 const Fridge = () => {
     const data = useLoaderData();
     const [filterValue, setFilterValue] = useState('');
@@ -121,6 +122,24 @@ const Fridge = () => {
                                 ></FoodCard>)
                             }
                         </div>
+
+                            {
+                                foods.length === 0 &&
+                                <div className='text-center flex flex-col items-center justify-center pb-10'>
+                                    <div>
+                                        <Lottie
+                                        animationData={dataNotFound}
+                                        style={{width: '250px', marginRight: '20px'}}
+                                        ></Lottie>
+                                    </div>
+                                        <h2 className='text-5xl text-gray-600'>
+                                            Oops! No food found.
+                                        </h2>
+                                        <p className='mt-4 text-primary font-bold'>
+                                            Try searching with a different name or <br /> check your connection.
+                                        </p>
+                                </div>
+                            }                        
                         
                         {
                             foods.length >= 9 &&
