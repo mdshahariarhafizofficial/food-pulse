@@ -96,7 +96,7 @@ const FoodDetails = () => {
                                     </div>
                                     <div className='flex items-center gap-1'>
                                        <CalendarX2 color='red' />
-                                        <p className='font-medium text-lg text-accent'>Expiry Date : {expiryDate}</p>
+                                        <p className='font-medium text-lg text-accent'>Expiry Date : {expiryDate.split('T')[0]}</p>
                                     </div>
                                     <div className='divider'></div>
                                     <div className='flex items-center gap-1 -mt-3'>

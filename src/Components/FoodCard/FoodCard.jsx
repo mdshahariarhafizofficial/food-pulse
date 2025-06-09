@@ -30,7 +30,7 @@ const FoodCard = ({food}) => {
                 :
                 <div className="absolute right-5 top-3 badge bg-blue-950 text-white">
                     <CalendarDays size={18} color='white' />
-                    Exp: {expiryDate}
+                    Exp: {expiryDate.split('T')[0]}
                 </div>
 
             }

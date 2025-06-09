@@ -16,10 +16,13 @@ const AddFood = () => {
         e.preventDefault();
         const form = e.target;
         const formDate = new FormData(form);
-        const addedDate = new Date();
         const foodData = Object.fromEntries(formDate.entries());
-        const newFood = {...foodData, addedDate};
+        foodData.expiryDate = new Date(form.expiryDate.value);
+        foodData.addedDate = new Date();
+     
+        const newFood = {...foodData};
         console.log(newFood);
+        
         
         // Send Data to DB
         axios.post('http://localhost:8000/foods', newFood)

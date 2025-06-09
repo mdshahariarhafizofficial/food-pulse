@@ -131,7 +131,7 @@ const MyItemsTable = ({FetchFoods}) => {
                     </td>
                     <td className='text-accent'>{food.category}</td>
                     <td className='font-bold text-md'>{food.quantity}</td>
-                    <td className='text-primary font-semibold'>{food.expiryDate}</td>
+                    <td className='text-primary font-semibold'>{food.expiryDate.split('T')[0]}</td>
 
                     {/* Auction */}
                         <td>{
@@ -225,7 +225,7 @@ const MyItemsTable = ({FetchFoods}) => {
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
                                     <label htmlFor="expiryDate" className="block text-secondary font-bold">*Expiry Date</label>
                                     <input type="date" name="expiryDate" id="expiryDate"
-                                    defaultValue={singleFood.expiryDate}
+                                    defaultValue={singleFood?.expiryDate?.split('T')[0]}
                                     placeholder="Expiry Date"
                                     required
                                     className="input w-full px-4 py-6 rounded-md" />
