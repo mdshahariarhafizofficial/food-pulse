@@ -142,6 +142,9 @@ const FoodStorageTips = () => {
 
 
                     </div>
+                    <div className='mt-10 text-center'>
+                        <button className='btn btn-outline border-primary border-2 text-primary px-10 py-5'>View All Tips</button>
+                    </div>
                 </div>
         </div>
     );
