@@ -4,6 +4,7 @@ import Slider from '../../Components/Slider/Slider';
 import NearlyExpiryItems from '../../Components/NearlyExpiryItems/NearlyExpiryItems';
 import ExpiredFood from '../../Components/ExpiredFood/ExpiredFood';
 import CountUpSection from '../../Components/CountUpSection/CountUpSection';
+import FoodStorageTips from '../../Components/FoodStorageTips/FoodStorageTips';
 // Expired Foods
 const fetchExpiredFoods = fetch('http://localhost:8000/foods/expired-foods')
 .then(res => res.json())
@@ -47,6 +48,10 @@ const Home = () => {
                                 fetchAllFoods = {fetchAllFoods}
                                 fetchAllNotes={fetchAllNotes}
                             ></CountUpSection>
+                        </div>
+
+                        <div className='bg-[#f4f1ea] lg:p-20 md:px-5 py-10'>
+                            <FoodStorageTips></FoodStorageTips>
                         </div>
 
                     </div>
