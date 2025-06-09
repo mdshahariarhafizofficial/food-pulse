@@ -67,7 +67,7 @@ const Navbar = () => {
                             <div
                             data-tooltip-id="my-tooltip"
                             data-tooltip-content={`${user&& user.displayName }`}
-                            data-tooltip-place="bottom"
+                            data-tooltip-place="left"
                             className='hidden md:block'
                             >
                                 <div className="avatar">
