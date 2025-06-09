@@ -18,7 +18,7 @@ const Home = () => {
             <div>
                 <Slider></Slider>
                 <div className='bg-[#f4f1ea] pb-20 pt-4 px-2'>
-                    <div className='max-w-[1500px] mx-auto'>
+                    <div className='max-w-[1400px] mx-auto'>
                         <NearlyExpiryItems expiringSoon = {expiringSoon}></NearlyExpiryItems>
                     </div>
                 </div>

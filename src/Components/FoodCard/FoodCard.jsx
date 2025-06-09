@@ -15,7 +15,7 @@ const FoodCard = ({food}) => {
 
     return (
         <div className='mt-10'>
-            <div className="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div className="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md shadow-gray-300">
             <div className="relative mx-4 h-[250px] -mt-6 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-secondary to-primary">
             <img className='w-full h-full object-cover' src={foodImage} alt="food image" />
             </div>

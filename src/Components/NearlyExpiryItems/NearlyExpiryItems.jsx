@@ -55,11 +55,11 @@ const NearlyExpiryItems = ({expiringSoon}) => {
             </div>
 
             {/* Slider */}
-                <div className="slider-container">
+                <div className="slider-container bg-white py-10 lg:p-10 rounded-2xl">
                 <Slider {...settings}>
                     {
                     expiringFood.map(food => ( 
-                    <div key={food._id} className='px-4'>
+                    <div key={food._id} className='p-4'>
                         <FoodCard 
                             food={food}
                         ></FoodCard>
