@@ -4,6 +4,28 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "none", background: "red" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "none", background: "green" }}
+      onClick={onClick}
+    />
+  );
+}
+
 const NearlyExpiryItems = ({expiringSoon}) => {
     const expiringFood = expiringSoon;
 
@@ -17,6 +39,8 @@ const NearlyExpiryItems = ({expiringSoon}) => {
     autoplay: true,
     speed: 500,
     autoplaySpeed: 2000,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     
     cssEase: "linear",
     responsive: [
@@ -48,7 +72,7 @@ const NearlyExpiryItems = ({expiringSoon}) => {
   };
 
     return (
-        <div className='py-10'>
+        <div className='pb-10'>
             <div className='text-center mb-6'>
                 <h2 className='flex items-center justify-center gap-2 text-3xl lg:text-5xl font-bold'><AlarmClock size={80} color='#eb0029' /> Nearly Expiring Items</h2>
                 <p className='text-secondary font-medium'>Don't let them go to waste!</p>

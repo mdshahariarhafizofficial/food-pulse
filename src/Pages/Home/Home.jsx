@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
+import Loading from '../../Pages/Loading/Loading'
 import Slider from '../../Components/Slider/Slider';
 import NearlyExpiryItems from '../../Components/NearlyExpiryItems/NearlyExpiryItems';
+import ExpiredFood from '../../Components/ExpiredFood/ExpiredFood';
+const fetchExpiredFoods = fetch('http://localhost:8000/foods/expired-foods')
+.then(res => res.json())
 
 const Home = () => {
     const [expiringSoon, setExpiringSoon] = useState([]);
@@ -17,9 +21,16 @@ const Home = () => {
         <>
             <div>
                 <Slider></Slider>
-                <div className='bg-[#f4f1ea] pb-20 pt-4 px-2'>
-                    <div className='max-w-[1400px] mx-auto'>
-                        <NearlyExpiryItems expiringSoon = {expiringSoon}></NearlyExpiryItems>
+                <div className='pb-20 px-2'>
+                    <div>
+                        <div className='bg-[#f4f1ea] lg:p-20 md:px-5 py-10'>
+                            <NearlyExpiryItems expiringSoon = {expiringSoon}></NearlyExpiryItems>
+                        </div>
+
+                        <Suspense fallback={<Loading></Loading>}>
+                            <ExpiredFood fetchExpiredFoods={fetchExpiredFoods}></ExpiredFood>
+                        </Suspense>
+
                     </div>
                 </div>
             </div>
