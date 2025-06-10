@@ -6,6 +6,7 @@ const ExpirationCountdown = ({expiryDate}) => {
     useEffect(()=>{
         const timer = setInterval( () => {
             const now = new Date().getTime();
+            
             const expiry = new Date(expiryDate).getTime();
             const distance = expiry-now;
 
