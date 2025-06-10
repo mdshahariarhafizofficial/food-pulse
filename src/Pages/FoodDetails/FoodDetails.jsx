@@ -7,6 +7,7 @@ import AuthContext from '../../Context/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Note from '../../Components/Note/Note';
+import ExpirationCountdown from '../../Components/CountdownTimer/ExpirationCountdown';
 
 
 const FoodDetails = () => {
@@ -64,6 +65,10 @@ const FoodDetails = () => {
                 <div className='bg-[#151515] p-5 rounded-xl'>
                     <h2 className='text-4xl md:text-6xl font-extrabold text-center text-primary uppercase'>Food Details</h2>
                     <div className='divider divider-primary w-56 mx-auto'></div>
+                </div>
+
+                <div className='bg-white p-4 text-center my-6 rounded-2xl shadow-[0px_10px_1px_rgba(235,_0,_41,_1),_0_10px_20px_rgba(235,_0,_41,_1)]'>
+                    <ExpirationCountdown expiryDate={expiryDate}></ExpirationCountdown>
                 </div>
 
                 <div className='bg-white p-4 md:p-6 lg:p-10 mt-5 rounded-2xl'>
