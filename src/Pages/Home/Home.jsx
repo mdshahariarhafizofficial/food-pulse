@@ -51,7 +51,7 @@ const Home = () => {
                             ></CountUpSection>
                         </div>
 
-                        <div className='bg-[#f4f1ea] lg:p-20 md:px-5 py-10'>
+                        <div className='bg-[#f4f1ea] lg:py-20 md:px-5 lg:px-0 py-10'>
                             <FoodStorageTips></FoodStorageTips>
                         </div>
 

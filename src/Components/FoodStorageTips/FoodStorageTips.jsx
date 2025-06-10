@@ -10,7 +10,7 @@ import { RiBreadFill } from "react-icons/ri";
 
 const FoodStorageTips = () => {
     return (
-        <div className='max-w[1500px] mx-auto pb-10'>
+        <div className='max-w-[1500px] mx-auto pb-10'>
             <div className='text-center mb-6'>
                 <h2 className='flex gap-2 items-center justify-center text-3xl lg:text-5xl font-bold'> <MdOutlineTipsAndUpdates size={70} color='#eb0029'></MdOutlineTipsAndUpdates> Food Storage Tips</h2>
                 <p className='text-secondary font-medium'>Smart ways to store your food & br keep it fresh longer!</p>
