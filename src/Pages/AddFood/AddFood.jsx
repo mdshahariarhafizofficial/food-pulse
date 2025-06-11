@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import logo from '../../assets/Pulse.png'
 import Lottie from 'lottie-react';
 import loginLottie from '../../assets/addfood.json';
-import bannerImg from '../../assets/HealtyBannerAd.png'
+// import bannerImg from '../../assets/HealtyBannerAd.png'
 import { IoFastFoodOutline } from 'react-icons/io5';
 import AuthContext from '../../Context/AuthContext';
 import axios from 'axios';
@@ -39,8 +39,13 @@ const AddFood = () => {
     };
     return (
         <div className='bg-[#f4f1ea] pb-20 pt-4 px-5'>
-            <div>
+            {/* <div>
                 <img className='max-w-[1500px] mx-auto w-full object-cover rounded-2xl ' src={bannerImg} alt="" />
+            </div> */}
+            
+            <div className='max-w-[1500px] mx-auto bg-[#151515] py-5 rounded-xl'>
+                    <h2 className='text-6xl font-extrabold text-center text-primary'>Add Food Items</h2>
+                    <div className='divider divider-primary w-56 mx-auto'></div>
             </div>
             <div className='grid grid-cols-12 items-center gap-6 lg:flex-row justify-between max-w-[1500px] mx-auto bg-white p-5 md:p-10 rounded-3xl my-10'>
 
