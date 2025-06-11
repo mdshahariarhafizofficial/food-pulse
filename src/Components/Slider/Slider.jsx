@@ -27,7 +27,7 @@ const Slider = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 3000,
+          delay: 2500,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -39,9 +39,12 @@ const Slider = () => {
       >
         {/* Slide-1 */}
         <SwiperSlide>
-        <div
+        <motion.div
           className="flex items-center justify-center relative w-full h-full bg-cover object-cover bg-center"
           style={{ backgroundImage: `url(${slide1})`}}
+          initial={{ scale: 1, x: 0, y: 0 }}
+          animate={{ scale: 1.1, x: 15, y: 15 }}
+          transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
         >
             {/* Overlay */}
           <div className="absolute inset-0 bg-[#000000] opacity-30"></div>
@@ -94,15 +97,18 @@ const Slider = () => {
             </motion.div>
         </motion.div>
 
-        </div>
+        </motion.div>
         </SwiperSlide>
 
         
         {/* Slide-2 */}
         <SwiperSlide>
-        <div
+        <motion.div
           className="flex items-center justify-center relative w-full h-full bg-cover object-cover bg-center"
           style={{ backgroundImage: `url(${slide2})`}}
+          initial={{ scale: 1, x: 0, y: 0 }}
+          animate={{ scale: 1.1, x: 15, y: 15 }}
+          transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
         >
             {/* Overlay */}
           <div className="absolute inset-0 bg-[#000000] opacity-30"></div>
@@ -136,14 +142,17 @@ const Slider = () => {
 
         </div>
 
-        </div>
+        </motion.div>
         </SwiperSlide>
 
         {/* Slide-3 */}
         <SwiperSlide>
-        <div
+        <motion.div
           className="flex items-center justify-center relative w-full h-full bg-cover object-cover bg-center"
           style={{ backgroundImage: `url(${slide3})`}}
+          initial={{ scale: 1, x: 0, y: 0 }}
+          animate={{ scale: 1.1, x: 15, y: 15 }}
+          transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
         >
             {/* Overlay */}
           <div className="absolute inset-0 bg-[#000000] opacity-30"></div>
@@ -177,14 +186,17 @@ const Slider = () => {
 
         </div>
         
-        </div>
+        </motion.div>
         </SwiperSlide>
 
         {/* Slide-4 */}
         <SwiperSlide>
-        <div
+        <motion.div
           className="flex items-center justify-center relative w-full h-full bg-cover object-cover bg-center"
           style={{ backgroundImage: `url(${slide4})`}}
+          initial={{ scale: 1, x: 0, y: 0 }}
+          animate={{ scale: 1.1, x: 15, y: 15 }}
+          transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
         >
             {/* Overlay */}
           <div className="absolute inset-0 bg-[#000000] opacity-30"></div>
@@ -217,7 +229,7 @@ const Slider = () => {
             </div>
         </div>
 
-        </div>
+        </motion.div>
         </SwiperSlide>
 
       </Swiper>
