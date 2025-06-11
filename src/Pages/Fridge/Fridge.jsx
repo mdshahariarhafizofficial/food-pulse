@@ -116,7 +116,9 @@ const Fridge = () => {
                     <div className='rounded-3xl bg-[#f4f1ea] p-5 lg:p-10'>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                             {
-                                foods.map(food => <FoodCard
+                                [...foods]
+                                .sort((a,b) => new Date(b.expiryDate) - new Date(a.expiryDate) )
+                                .map(food => <FoodCard
                                 key={food._id}
                                 food = {food}
                                 ></FoodCard>)
