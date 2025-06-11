@@ -92,7 +92,7 @@ const NearlyExpiryItems = ({expiringSoon}) => {
                       duration: 0.6,
                       delay: index * 0.1,
                     }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className='p-4'>
                         <FoodCard 
                             food={food}
