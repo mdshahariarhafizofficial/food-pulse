@@ -1,7 +1,7 @@
 import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { BsArrowRightSquareFill } from "react-icons/bs";
 import { Typewriter } from 'react-simple-typewriter'
 // Import Swiper styles
 import 'swiper/css';
@@ -67,7 +67,11 @@ const Slider = () => {
                  />
                 </h4>              
             </div>
-
+            <div>
+              <a href='/fridge'>
+                <button className='btn btn-primary px-10 py-6 text-xl'>Discover Foods <BsArrowRightSquareFill /></button>
+              </a>
+            </div>
         </div>
 
         </div>
@@ -104,6 +108,11 @@ const Slider = () => {
                  />
                 </h4>              
             </div>
+            <div className='mt-5'>
+              <a href='#expiredFoods'>
+                <button className='btn btn-primary px-10 py-6 text-xl'>Track Expiry <BsArrowRightSquareFill /></button>
+              </a>
+            </div>
 
         </div>
 
@@ -125,7 +134,7 @@ const Slider = () => {
             <p className='text-shadow-lg/80 text-shadow-black'>Categorize, monitor, and manage all your <br /> food in one place.</p>
 
             {/* Type Writer */}
-            <div className='space-y-4'>
+            <div className='space-y-6'>
               <h2 className='text-4xl md:text-4xl text-shadow-lg/80 text-shadow-black font-bold'>Organize by →
               </h2>
                 <h4 className='text-xl md:text-2xl text-shadow-lg/80 text-shadow-black font-bold text-primary'>
@@ -140,9 +149,14 @@ const Slider = () => {
                  />
                 </h4>              
             </div>
+            <div className=''>
+              <a href='#storageTips'>
+                <button className='btn btn-primary px-10 py-6 text-xl'>Storage Tips <BsArrowRightSquareFill /></button>
+              </a>
+            </div>
 
         </div>
-
+        
         </div>
         </SwiperSlide>
 
@@ -176,7 +190,11 @@ const Slider = () => {
                  />
                 </h4>              
             </div>
-
+            <div>
+              <a href='#howItWork'>
+                <button className='btn btn-primary px-10 py-6 text-xl'>How it Works <BsArrowRightSquareFill /></button>
+              </a>
+            </div>
         </div>
 
         </div>
