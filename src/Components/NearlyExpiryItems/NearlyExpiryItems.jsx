@@ -3,6 +3,7 @@ import FoodCard from '../FoodCard/FoodCard';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { motion } from 'framer-motion';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -34,11 +35,11 @@ const NearlyExpiryItems = ({expiringSoon}) => {
     dots: true,
     infinite: true,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     initialSlide: 0,
     autoplay: true,
-    speed: 500,
-    autoplaySpeed: 2000,
+    speed: 1000,
+    autoplaySpeed: 2500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     
@@ -82,12 +83,21 @@ const NearlyExpiryItems = ({expiringSoon}) => {
                 <div className="slider-container bg-white py-10 lg:p-10 rounded-2xl">
                 <Slider {...settings}>
                     {
-                    expiringFood.map(food => ( 
-                    <div key={food._id} className='p-4'>
+                    expiringFood.map((food, index) => ( 
+                    <motion.div 
+                    key={food._id} 
+                    initial = {{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.1,
+                    }}
+                    viewport={{ once: true }}
+                    className='p-4'>
                         <FoodCard 
                             food={food}
                         ></FoodCard>
-                    </div>
+                    </motion.div>
                     ))
                 }
                 </Slider>

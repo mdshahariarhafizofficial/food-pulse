@@ -4,7 +4,7 @@ import FoodCard from '../FoodCard/FoodCard';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
+import { motion } from 'framer-motion';
 
 const ExpiredFood = ({fetchExpiredFoods}) => {
     const expiredFoods = use(fetchExpiredFoods);
@@ -13,7 +13,7 @@ const ExpiredFood = ({fetchExpiredFoods}) => {
     dots: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     initialSlide: 0,
     autoplay: true,
     speed: 500,
@@ -58,8 +58,17 @@ const ExpiredFood = ({fetchExpiredFoods}) => {
                 <div className="slider-container py-10">
                 <Slider {...settings}>
                     {
-                    expiredFoods.map(food => ( 
-                    <div key={food._id} className='relative p-4'>
+                    expiredFoods.map((food, index) => ( 
+                    <motion.div 
+                    key={food._id} 
+                    initial = {{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.1,
+                    }}
+                    viewport={{ once: true }}                    
+                    className='relative p-4'>
                         <FoodCard 
                             food={food}
                         ></FoodCard>
@@ -67,7 +76,7 @@ const ExpiredFood = ({fetchExpiredFoods}) => {
                             <CalendarDays size={18} color='white' />
                             Exp: {food.expiryDate.split('T')[0]}
                         </div>
-                    </div>
+                    </motion.div>
                     ))
                 }
                 </Slider>
