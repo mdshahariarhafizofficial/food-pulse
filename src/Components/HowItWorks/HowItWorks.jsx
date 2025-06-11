@@ -1,8 +1,9 @@
 import React from 'react';
+import { Fade, Slide, Zoom } from "react-awesome-reveal";
 
 const HowItWorks = () => {
     return (
-        <div>
+        <Fade direction='left' cascade>
             <section className="bg-white dark:text-gray-800 py-20">
                 <div className="container max-w-5xl px-4 py-12 mx-auto" bis_skin_checked="1">
                     <div className="grid gap-4 mx-4 sm:grid-cols-12" bis_skin_checked="1">
@@ -35,7 +36,7 @@ const HowItWorks = () => {
                     </div>
                 </div>
             </section>
-        </div>
+        </Fade>
     );
 };
 
