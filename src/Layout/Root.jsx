@@ -3,12 +3,14 @@ import { Outlet, useNavigation } from 'react-router';
 import Navbar from '../Components/Header/Navbar';
 import Footer from '../Components/Footer/Footer';
 import Loading from '../Pages/Loading/Loading';
+import HeaderTop from '../Components/Header/HeaderTop';
 
 const Root = () => {
     const navigation = useNavigation();
     return (
         <>
          <header>
+            <HeaderTop></HeaderTop>
             <Navbar></Navbar>
          </header>
          <main>
