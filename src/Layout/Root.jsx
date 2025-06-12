@@ -9,7 +9,7 @@ const Root = () => {
     const navigation = useNavigation();
     return (
         <>
-         <header>
+         <header className='sticky top-0 z-50'>
             <HeaderTop></HeaderTop>
             <Navbar></Navbar>
          </header>
