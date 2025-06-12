@@ -4,6 +4,7 @@ import Navbar from '../Components/Header/Navbar';
 import Footer from '../Components/Footer/Footer';
 import Loading from '../Pages/Loading/Loading';
 import HeaderTop from '../Components/Header/HeaderTop';
+import ScrollButton from '../Components/ScrollButton/ScrollButton';
 
 const Root = () => {
     const navigation = useNavigation();
@@ -24,6 +25,7 @@ const Root = () => {
          <footer>
             <Footer></Footer>
          </footer>
+        <ScrollButton></ScrollButton>
         </>
     );
 };
