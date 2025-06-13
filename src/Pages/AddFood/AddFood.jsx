@@ -37,7 +37,7 @@ const AddFood = () => {
             }
         })
         .catch(error => {
-           toast.error(error);
+           toast.error(error.message);
         })
         form.reset();
     };

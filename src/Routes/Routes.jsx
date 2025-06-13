@@ -44,8 +44,9 @@ const router = createBrowserRouter([
             {
                 path: '/foods/:id',
                 element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:8000/foods/${params.id}`),
-                hydrateFallbackElement: <Loading></Loading>
+            },{
+                path: '/not-found',
+                Component: ErrorPage,
             }
 
         ]

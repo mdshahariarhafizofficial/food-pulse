@@ -2,19 +2,38 @@ import { CalendarX2, ClockAlert, HandPlatter, Mail, ScrollText } from 'lucide-re
 import React, { useContext, useEffect, useState } from 'react';
 import { BiCategory } from 'react-icons/bi';
 import { MdDateRange } from 'react-icons/md';
-import { useLoaderData } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import AuthContext from '../../Context/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Note from '../../Components/Note/Note';
 import ExpirationCountdown from '../../Components/CountdownTimer/ExpirationCountdown';
 
-
 const FoodDetails = () => {
     const {user} = useContext(AuthContext);
-    const data = useLoaderData();
+    const [data, setData] = useState({});
+    const {id} = useParams();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        axios(`http://localhost:8000/foods/${id}`, {
+            headers: {
+                authorization: `Bearer ${user?.accessToken}`
+            }
+        })
+        .then(res => {
+            setData(res.data)
+        })
+        .catch(error => {
+            toast.error(error.message)
+            navigate('/not-found')
+        })
+    }, [id, user?.accessToken, navigate]);
+    
+    // const data = useLoaderData();
     const [notes, setNotes] = useState([]);
     const {_id, quantity, foodTitle, foodImage, expiryDate, category, description, addedDate, email} = data;
+    
     const today = new Date();
     today.setHours(0,0,0,0);
     const expDate = new Date(expiryDate);
@@ -92,7 +111,7 @@ const FoodDetails = () => {
                                 <p className='flex items-center gap-2 text-gray-500 font-medium'>
                                         <MdDateRange size={25} color='#FF5722'> </MdDateRange>
                                     <span className='text-xl font-bold text-secondary'>Added Date : </span>
-                                {addedDate.split('T')[0]}</p>
+                                {addedDate && addedDate.split('T')[0]}</p>
                                 <div className='divider'></div>
                                 <div className='space-y-3 mt-5'>
                                     <div>
@@ -109,7 +128,7 @@ const FoodDetails = () => {
                                     </div>
                                     <div className='flex items-center gap-1'>
                                        <CalendarX2 color='red' />
-                                        <p className='font-medium text-lg text-accent'>Expiry Date : {expiryDate.split('T')[0]}</p>
+                                        <p className='font-medium text-lg text-accent'>Expiry Date : {expiryDate &&  expiryDate.split('T')[0]}</p>
                                     </div>
                                     <div className='divider'></div>
                                     <div className='flex items-center gap-1 -mt-3'>

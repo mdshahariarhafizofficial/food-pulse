@@ -1,5 +1,5 @@
 export const FetchFoods = (email, accessToken) => {
-    return fetch(`http://localhost:8000/foods?email=${email}`, {
+    return fetch(`http://localhost:8000/foods/my-foods?email=${email}`, {
         headers: {
             authorization: `Bearer ${accessToken}`
         }

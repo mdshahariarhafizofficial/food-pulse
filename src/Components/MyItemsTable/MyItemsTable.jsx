@@ -92,8 +92,7 @@ const MyItemsTable = ({FetchFoods}) => {
             }
         })
         .catch(error => {
-            console.log(error.message);
-            
+            toast.error(error.message);
         })
     }
 
