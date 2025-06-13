@@ -25,7 +25,11 @@ const AddFood = () => {
         
         
         // Send Data to DB
-        axios.post('http://localhost:8000/foods', newFood)
+        axios.post('http://localhost:8000/foods', newFood,{
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
         .then(res => {
             if (res.data.insertedId) {
                 toast.success('New Food Added Successfully!');
@@ -33,7 +37,7 @@ const AddFood = () => {
             }
         })
         .catch(error => {
-           toast.error(error.message);
+           toast.error(error);
         })
         form.reset();
     };

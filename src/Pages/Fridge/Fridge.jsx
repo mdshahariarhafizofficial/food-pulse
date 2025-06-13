@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import FoodCard from '../../Components/FoodCard/FoodCard';
 import dataNotFound from '../../assets/notFound.json'
 import Lottie from 'lottie-react';
+import AuthContext from '../../Context/AuthContext';
 const Fridge = () => {
+    const {user} = useContext(AuthContext);
     const data = useLoaderData();
     const [filterValue, setFilterValue] = useState('');
     
@@ -24,7 +26,11 @@ const Fridge = () => {
     // Filter by category
     useEffect(() => {
         if (filterValue !== "") {            
-            fetch(`http://localhost:8000/foods?category=${filterValue}`)
+            fetch(`http://localhost:8000/foods?category=${filterValue}`, {
+            headers: {
+                authorization: `Bearer ${user?.accessToken}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setFoods(data)
@@ -33,7 +39,7 @@ const Fridge = () => {
         else{
             setFoods(data.slice(0, 9));
         }
-    }, [filterValue, data]);
+    }, [filterValue, data, user?.accessToken]);
 
     // Filter By Search
     const handleSearch = (e) => {
@@ -42,7 +48,11 @@ const Fridge = () => {
 
         // Send search value to db
         if (search !== "") {            
-            fetch(`http://localhost:8000/foods?search=${search}`)
+            fetch(`http://localhost:8000/foods?search=${search}`, {
+            headers: {
+                authorization: `Bearer ${user?.accessToken}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setFoods(data)

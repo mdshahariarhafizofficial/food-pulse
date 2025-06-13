@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { use, useContext, useState } from 'react';
 import { Link } from 'react-router';
 import { FaEdit, FaInfoCircle } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
@@ -9,6 +9,7 @@ import logo from '../../assets/Pulse.png';
 import AuthContext from '../../Context/AuthContext';
 
 const MyItemsTable = ({FetchFoods}) => {
+    const {user} = useContext(AuthContext);
     const data = use(FetchFoods);
     const [myFoods, setMyFoods] = useState(data);
     const [singleFood, setSingleFood] = useState({});
@@ -28,7 +29,13 @@ const MyItemsTable = ({FetchFoods}) => {
         confirmButtonText: "Yes, delete it!"
         }).then((result) => {
         if (result.isConfirmed) {
-            axios.delete(`http://localhost:8000/foods/${id}`)
+            axios.delete(`http://localhost:8000/foods/${id}`, 
+                {
+                    headers: {
+                        authorization: `Bearer ${user.accessToken}`
+                    }
+                }
+            )
             .then((res) => {
                 if (res.data.deletedCount) {
                     const remainingFoods = data.filter(food => food._id !== id);
@@ -62,7 +69,11 @@ const MyItemsTable = ({FetchFoods}) => {
         const updateInfo = Object.fromEntries(formData.entries());
         
         // Update data
-        axios.put(`http://localhost:8000/foods/${id}`, updateInfo)
+        axios.put(`http://localhost:8000/foods/${id}`, updateInfo, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
         .then(res => {
             if (res.data.modifiedCount) {
                 fetch(`http://localhost:8000/foods/${id}`)

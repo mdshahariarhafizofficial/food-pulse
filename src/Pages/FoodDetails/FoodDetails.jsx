@@ -34,7 +34,11 @@ const FoodDetails = () => {
     };
 
     // Send Note to DB
-        axios.post('http://localhost:8000/notes', note)
+        axios.post('http://localhost:8000/notes', note, {
+            headers: {
+                authorization: `Bearer ${user?.accessToken}`
+            }
+        })
         .then(res => {
             if (res.data.insertedId) {
                 toast.success('Note has been saved!')
@@ -49,14 +53,18 @@ const FoodDetails = () => {
 
     // Load Note
     useEffect(()=>{
-        fetch(`http://localhost:8000/notes/${_id}`)
+        fetch(`http://localhost:8000/notes/${_id}`, {
+            headers: {
+                authorization: `Bearer ${user?.accessToken}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
             setNotes(data)
             console.log(data);
             
         })
-    },[_id])
+    },[_id, user?.accessToken])
     
     return (
         <div className='bg-[#f4f1ea] pb-20 pt-4 px-2'>
