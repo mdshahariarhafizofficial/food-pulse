@@ -10,7 +10,7 @@ const Loading = () => {
                 loop={true}
                 width={30}
                 style={{
-                    width: '400px'
+                    width: '150px'
                 }}
                 ></Lottie>
             </div>
