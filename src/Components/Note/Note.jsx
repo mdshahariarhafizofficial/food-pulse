@@ -1,7 +1,6 @@
 import React from "react";
 
 const Note = ({noteData}) => {
-    console.log(noteData);
     const {email, text, postedDate, photoUrl, authorName} = noteData;
   return (
     <>

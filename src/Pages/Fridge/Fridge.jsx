@@ -21,7 +21,6 @@ const Fridge = () => {
             window.scrollTo(100, 0)
         }
     }, [data, loadMore])
-    // console.log(data);
 
     // Filter by category
     useEffect(() => {

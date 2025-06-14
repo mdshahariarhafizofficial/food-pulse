@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import logo from '../../assets/Pulse.png'
 import Lottie from 'lottie-react';
-import loginLottie from '../../assets/addfood.json';
+// import loginLottie from '../../assets/addfood.json';
 // import bannerImg from '../../assets/HealtyBannerAd.png'
 import { IoFastFoodOutline } from 'react-icons/io5';
 import AuthContext from '../../Context/AuthContext';
@@ -21,7 +21,6 @@ const AddFood = () => {
         foodData.addedDate = new Date();
      
         const newFood = {...foodData};
-        console.log(newFood);
         
         
         // Send Data to DB

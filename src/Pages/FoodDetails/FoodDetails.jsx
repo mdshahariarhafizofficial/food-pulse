@@ -82,8 +82,6 @@ const FoodDetails = () => {
         .then(res => res.json())
         .then(data => {
             setNotes(data)
-            console.log(data);
-            
         })
     },[_id, user?.accessToken])
     

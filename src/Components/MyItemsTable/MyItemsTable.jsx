@@ -15,11 +15,9 @@ const MyItemsTable = ({FetchFoods}) => {
     const data = use(FetchFoods);
     const [myFoods, setMyFoods] = useState(data);
     const [singleFood, setSingleFood] = useState({});
-    console.log(myFoods);
 
     // Handle Delete
     const handleDelete = (id) => {
-        console.log(id);
         
         Swal.fire({
         title: "Are you sure?",
