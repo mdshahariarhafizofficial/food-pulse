@@ -156,7 +156,7 @@ const Fridge = () => {
                         {
                             foods.length >= 9 &&
                             <div className='text-center mt-10'>
-                                <button onClick={() => setLoadMore(!loadMore)}  className='btn btn-secondary text-black text-xl px-8'>
+                                <button onClick={() => setLoadMore(!loadMore)}  className='btn btn-primary text-xl px-8'>
                                 {
                                     loadMore? 'Shoe Less...':
                                     'Load More...'

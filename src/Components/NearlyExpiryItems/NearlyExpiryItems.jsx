@@ -4,6 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { motion } from 'framer-motion';
+import dataNotFound from '../../assets/notFound.json'
+import Lottie from 'lottie-react';
+import { Link } from 'react-router';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -80,8 +83,7 @@ const NearlyExpiryItems = ({expiringSoon}) => {
             </div>
 
             {/* Slider */}
-                <div className="slider-container bg-white py-10 lg:p-10 rounded-2xl">
-                <Slider {...settings}>
+                <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  bg-white py-10 lg:p-10 rounded-2xl">
                     {
                     expiringFood.map((food, index) => ( 
                     <motion.div 
@@ -93,15 +95,32 @@ const NearlyExpiryItems = ({expiringSoon}) => {
                       delay: index * 0.1,
                     }}
                     viewport={{ once: false }}
-                    className='p-4'>
+                    className=''>
                         <FoodCard 
                             food={food}
                         ></FoodCard>
                     </motion.div>
                     ))
                 }
-                </Slider>
                 </div>
+
+                            {
+                                expiringFood.length === 0 &&
+                                <div className='text-center flex flex-col items-center justify-center pb-10'>
+                                    <div>
+                                        <Lottie
+                                        animationData={dataNotFound}
+                                        style={{width: '250px', marginRight: '20px'}}
+                                        ></Lottie>
+                                    </div>
+                                        <h2 className='text-5xl text-gray-600'>
+                                            Oops! Nearly Expiring not food found.
+                                        </h2>
+                                        <p className='mt-4 text-primary font-bold'>
+                                        <Link className='underline' to='/fridge'>See All Foods</Link>
+                                        </p>
+                                </div>
+                            }                 
 
             {/* <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {
