@@ -51,11 +51,11 @@ const AddFood = () => {
                     <h2 className='text-6xl font-extrabold text-center text-primary'>Add Food Items</h2>
                     <div className='divider divider-primary w-56 mx-auto'></div>
             </div>
-            <div className='grid grid-cols-12 items-center gap-6 lg:flex-row justify-between max-w-[1500px] mx-auto bg-white p-5 md:p-10 rounded-3xl my-10'>
+            <div className='max-w-[1500px] mx-auto bg-white p-5 md:p-10 rounded-3xl my-10'>
 
                 {/* Form */}
-                <div className='col-span-12 lg:col-span-7 flex justify-center lg:justify-start'>
-                    <div className="w-full max-w-4xl md:px-10 px-5 py-12 space-y-3 rounded-3xl bg-[#f4f1ea]" bis_skin_checked="1">
+                <div className='flex justify-center lg:justify-start'>
+                    <div className="w-full md:px-10 px-5 py-12 space-y-3 rounded-3xl bg-[#f4f1ea]" bis_skin_checked="1">
                         <img src={logo} 
                         alt="logo"
                         className='w-40 mx-auto'
@@ -66,7 +66,7 @@ const AddFood = () => {
                         </div>
                         <form onSubmit={handleAddFood} className="space-y-6">
 
-
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                             {/* Email */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
                                 <label htmlFor="Email" className="block text-secondary font-bold">User Email</label>
@@ -78,8 +78,6 @@ const AddFood = () => {
                                 className="input w-full px-4 py-6 rounded-md" />
                             </div>
 
-
-
                             {/* Title */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
                                 <label htmlFor="foodTitle" className="block text-secondary font-bold">*Food Title</label>
@@ -87,7 +85,9 @@ const AddFood = () => {
                                 required
                                 className="input w-full px-4 py-6 rounded-md" />
                             </div>
+                        </div>
 
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                             {/* Food Image */}
                             <div className="space-y-1 text-sm" bis_skin_checked="1">
                                 <label htmlFor="foodImage" className="block text-secondary font-bold">*Food Image Url</label>
@@ -95,8 +95,7 @@ const AddFood = () => {
                                 required
                                 className="input w-full px-4 py-6 rounded-md" />
                             </div>
-
-                                                            {/* Category */}
+                                                                                      {/* Category */}
                                 <div className="space-y-1 text-sm" bis_skin_checked="1">
                                     <label htmlFor="foodTitle" className="block text-secondary font-bold">*Select a category</label>
                                     <select
@@ -113,6 +112,7 @@ const AddFood = () => {
                                     </select>
 
                                 </div>
+                        </div>
 
                             {/* Category & Exp Date */}
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
@@ -156,12 +156,12 @@ const AddFood = () => {
                 </div>
 
                 {/* Lottie */}
-                <div className='col-span-12 lg:col-span-5 flex items-center justify-center'>
+                {/* <div className='col-span-12 lg:col-span-5 flex items-center justify-center'>
                     <Lottie 
                     animationData={loginLottie}
                     style={{width: '600px'}}
                     ></Lottie>
-                </div>
+                </div> */}
 
             </div>
         </div>
