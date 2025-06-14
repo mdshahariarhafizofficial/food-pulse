@@ -8,6 +8,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Note from '../../Components/Note/Note';
 import ExpirationCountdown from '../../Components/CountdownTimer/ExpirationCountdown';
+import dataNotFound from '../../assets/notFound.json'
+import Lottie from 'lottie-react';
 
 const FoodDetails = () => {
     const {user} = useContext(AuthContext);
@@ -148,15 +150,34 @@ const FoodDetails = () => {
                         </div>
 
                         <div className='mt-6 pb-10'>
-                            <h2 className='text-5xl border-b-2 border-gray-300 pb-4 mb-4 font-bold text-secondary'>Description</h2>
+                            <h2 className='text-5xl border-b-2 border-gray-300 pb-4 mb-4 font-bold text-primary'>Description</h2>
                             <p className='text-gray-500 font-medium'>{description}</p>
                         </div>
                         <div className='divider'></div>
 
                         {/* Notes */}
                         <div className='my-10'>
-                            <h2 className='text-4xl text-secondary font-bold mb-2 flex items-center gap-2'><ScrollText size={50} /> Notes:</h2>
-                            {notes.length == 0 && <div className='text-2xl text-primary font-semibold text-center p-10 border-2 rounded'><a href='#note' className='underline'>Add A Note</a></div>}
+                            <h2 className='text-4xl text-primary font-bold mb-2 flex items-center gap-2'><ScrollText size={50} /> Notes:</h2>
+                            <div className='divider'></div>
+                            {
+                                notes.length === 0 &&
+                                <div className='text-center flex flex-col items-center justify-center pb-10'>
+                                    <div>
+                                        <Lottie
+                                        animationData={dataNotFound}
+                                        style={{width: '200px', marginRight: '20px'}}
+                                        ></Lottie>
+                                    </div>
+                                        <h2 className='text-5xl text-gray-600'>
+                                            Oops! No note found.
+                                        </h2>
+                                        <p className='mt-4 text-primary font-bold'>
+                                            <a href="#note" className='underline'>
+                                                Add a note
+                                            </a>
+                                        </p>
+                                </div>
+                            } 
                             <div className='flex flex-col gap-6'>
                                 {
                                     notes.map((noteData, index) => <Note
@@ -172,7 +193,7 @@ const FoodDetails = () => {
                         <div id='note' className='my-10'>
                             <div className="flex flex-col p-8 shadow-sm rounded-xl lg:p-12 bg-[#f4f1ea] dark:text-gray-800" bis_skin_checked="1">
                                 <div className="flex flex-col items-center w-full" bis_skin_checked="1">
-                                    <h2 className="flex items-center gap-1 text-4xl font-semibold text-center text-secondary">
+                                    <h2 className="flex items-center gap-1 text-4xl font-semibold text-center text-primary">
                                         <ScrollText size={50} />
                                         Add A Note</h2>
                                     <form onSubmit={(e) => handleAddNote(e,_id)} className="flex flex-col w-full mt-3" bis_skin_checked="1">
@@ -185,6 +206,9 @@ const FoodDetails = () => {
                                             user.email === email ?
                                             <button type="submit" className="py-4 my-8 font-semibold rounded-md dark:text-gray-50 bg-secondary">Add Note</button> :
                                             <button type="submit" style={{cursor: 'not-allowed'}} className="py-4 my-8 font-semibold rounded-md dark:text-gray-50 bg-gray-400 " disabled={true}>Add Note</button>
+                                        }
+                                        {
+                                            user.email !== email && <p className='text-red-500'>⚠️ Only the person who added this food can add a note.</p>
                                         }
                                     </form>
                                 </div>
