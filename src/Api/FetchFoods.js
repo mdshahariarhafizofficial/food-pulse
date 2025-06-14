@@ -1,5 +1,5 @@
 export const FetchFoods = (email, accessToken) => {
-    return fetch(`http://localhost:8000/foods/my-foods?email=${email}`, {
+    return fetch(`https://food-pulse-server.vercel.app/foods/my-foods?email=${email}`, {
         headers: {
             authorization: `Bearer ${accessToken}`
         }

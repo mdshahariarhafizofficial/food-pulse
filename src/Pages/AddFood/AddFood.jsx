@@ -24,7 +24,7 @@ const AddFood = () => {
         
         
         // Send Data to DB
-        axios.post('http://localhost:8000/foods', newFood,{
+        axios.post('https://food-pulse-server.vercel.app/foods', newFood,{
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }

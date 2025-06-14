@@ -29,7 +29,7 @@ const MyItemsTable = ({FetchFoods}) => {
         confirmButtonText: "Yes, delete it!"
         }).then((result) => {
         if (result.isConfirmed) {
-            axios.delete(`http://localhost:8000/foods/${id}`, 
+            axios.delete(`https://food-pulse-server.vercel.app/foods/${id}`, 
                 {
                     headers: {
                         authorization: `Bearer ${user.accessToken}`
@@ -69,14 +69,14 @@ const MyItemsTable = ({FetchFoods}) => {
         const updateInfo = Object.fromEntries(formData.entries());
         
         // Update data
-        axios.put(`http://localhost:8000/foods/${id}`, updateInfo, {
+        axios.put(`https://food-pulse-server.vercel.app/foods/${id}`, updateInfo, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
         })
         .then(res => {
             if (res.data.modifiedCount) {
-                fetch(`http://localhost:8000/foods/${id}`,{
+                fetch(`https://food-pulse-server.vercel.app/foods/${id}`,{
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }

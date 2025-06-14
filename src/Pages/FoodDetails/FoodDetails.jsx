@@ -18,7 +18,7 @@ const FoodDetails = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios(`http://localhost:8000/foods/${id}`, {
+        axios(`https://food-pulse-server.vercel.app/foods/${id}`, {
             headers: {
                 authorization: `Bearer ${user?.accessToken}`
             }
@@ -55,7 +55,7 @@ const FoodDetails = () => {
     };
 
     // Send Note to DB
-        axios.post('http://localhost:8000/notes', note, {
+        axios.post('https://food-pulse-server.vercel.app/notes', note, {
             headers: {
                 authorization: `Bearer ${user?.accessToken}`
             }
@@ -74,7 +74,7 @@ const FoodDetails = () => {
 
     // Load Note
     useEffect(()=>{
-        fetch(`http://localhost:8000/notes/${_id}`, {
+        fetch(`https://food-pulse-server.vercel.app/notes/${_id}`, {
             headers: {
                 authorization: `Bearer ${user?.accessToken}`
             }

@@ -25,7 +25,7 @@ const Fridge = () => {
     // Filter by category
     useEffect(() => {
         if (filterValue !== "") {            
-            fetch(`http://localhost:8000/foods?category=${filterValue}`, {
+            fetch(`https://food-pulse-server.vercel.app/foods?category=${filterValue}`, {
             headers: {
                 authorization: `Bearer ${user?.accessToken}`
             }
@@ -47,7 +47,7 @@ const Fridge = () => {
 
         // Send search value to db
         if (search !== "") {            
-            fetch(`http://localhost:8000/foods?search=${search}`, {
+            fetch(`https://food-pulse-server.vercel.app/foods?search=${search}`, {
             headers: {
                 authorization: `Bearer ${user?.accessToken}`
             }

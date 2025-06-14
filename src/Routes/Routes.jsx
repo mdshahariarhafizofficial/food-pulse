@@ -38,7 +38,7 @@ const router = createBrowserRouter([
             {
                 path: '/fridge',
                 Component: Fridge,
-                loader: () => fetch('http://localhost:8000/foods'),
+                loader: () => fetch('https://food-pulse-server.vercel.app/foods'),
                 hydrateFallbackElement: <Loading></Loading>
             },
             {

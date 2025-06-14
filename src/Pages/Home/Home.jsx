@@ -7,13 +7,13 @@ import CountUpSection from '../../Components/CountUpSection/CountUpSection';
 import FoodStorageTips from '../../Components/FoodStorageTips/FoodStorageTips';
 import HowItWorks from '../../Components/HowItWorks/HowItWorks';
 // Expired Foods
-const fetchExpiredFoods = fetch('http://localhost:8000/foods/expired-foods')
+const fetchExpiredFoods = fetch('https://food-pulse-server.vercel.app/foods/expired-foods')
 .then(res => res.json())
 // All foods
-const fetchAllFoods = fetch('http://localhost:8000/foods')
+const fetchAllFoods = fetch('https://food-pulse-server.vercel.app/foods')
 .then(res => res.json())
 // All notes
-const fetchAllNotes = fetch('http://localhost:8000/notes')
+const fetchAllNotes = fetch('https://food-pulse-server.vercel.app/notes')
 .then(res => res.json())
 
 
@@ -22,7 +22,7 @@ const Home = () => {
 
     // Load Expire Soon Foods
     useEffect(() => {
-        fetch('http://localhost:8000/foods/expiring-soon').then(res => res.json())
+        fetch('https://food-pulse-server.vercel.app/foods/expiring-soon').then(res => res.json())
         .then(data => {
             setExpiringSoon(data)
         })
