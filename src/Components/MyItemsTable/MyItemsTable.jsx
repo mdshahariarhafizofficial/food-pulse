@@ -7,6 +7,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import logo from '../../assets/Pulse.png';
 import AuthContext from '../../Context/AuthContext';
+import dataNotFound from '../../assets/notFound.json'
+import Lottie from 'lottie-react';
 
 const MyItemsTable = ({FetchFoods}) => {
     const {user} = useContext(AuthContext);
@@ -76,7 +78,11 @@ const MyItemsTable = ({FetchFoods}) => {
         })
         .then(res => {
             if (res.data.modifiedCount) {
-                fetch(`http://localhost:8000/foods/${id}`)
+                fetch(`http://localhost:8000/foods/${id}`,{
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
                 .then(res => res.json())
                 .then(data => {
                     const updatedFood = myFoods.map(food => food._id === data._id ? data : food);
@@ -92,7 +98,13 @@ const MyItemsTable = ({FetchFoods}) => {
             }
         })
         .catch(error => {
-            toast.error(error.message);
+                document.getElementById('my_modal_3').close();
+                Swal.fire({
+                icon: "error",
+                title: error.message,
+                showConfirmButton: false,
+                timer: 1500
+                });
         })
     }
 
@@ -101,8 +113,8 @@ const MyItemsTable = ({FetchFoods}) => {
         <div className="overflow-x-auto">
         <table className="table text-center">
             {/* head */}
-            <thead className='text-secondary'>
-            <tr className='border-primary border-b-2'>
+            <thead className='bg-primary text-white'>
+            <tr className=''>
                 <th>
                     No.
                 </th>
@@ -119,9 +131,9 @@ const MyItemsTable = ({FetchFoods}) => {
             {/* row  */}
             {
                 myFoods.map((food, index) =>                
-                <tr key={food._id} className='border-gray-300'>
-                    <th className='text-accent'>{index+1}</th>
-                    <td>
+                <tr key={food._id} className=''>
+                    <th className='bg-gray-200'>{index+1}</th>
+                    <td className='bg-[#f4f1ea]'>
                     <div className="flex items-center gap-3 justify-center">
                         <div className="avatar">
                         <div className="mask mask-circle h-12 w-12">
@@ -134,17 +146,17 @@ const MyItemsTable = ({FetchFoods}) => {
                         </div>
                     </div>
                     </td>
-                    <td>
+                    <td className='bg-gray-200'>
                         <div className="font-bold text-primary">
                         {food.foodTitle}    
                         </div>                        
                     </td>
-                    <td className='text-accent'>{food.category}</td>
-                    <td className='font-bold text-md'>{food.quantity}</td>
-                    <td className='text-primary font-semibold'>{food.expiryDate.split('T')[0]}</td>
+                    <td className='text-black font-medium bg-[#f4f1ea]'>{food.category}</td>
+                    <td className='font-bold text-md bg-gray-200'>{food.quantity}</td>
+                    <td className='text-primary font-semibold bg-[#f4f1ea]'>{food.expiryDate.split('T')[0]}</td>
 
                     {/* Auction */}
-                        <td>{
+                        <td className='bg-gray-200'>{
                             <div>
                                 <div className="join flex justify-center items-center gap-7">
                                     <Link to={`/foods/${food._id}`}>
@@ -175,6 +187,27 @@ const MyItemsTable = ({FetchFoods}) => {
             }
             </tbody>
         </table>
+
+                            {
+                                myFoods.length === 0 &&
+                                <div className='text-center flex flex-col items-center justify-center pb-10'>
+                                    <div>
+                                        <Lottie
+                                        animationData={dataNotFound}
+                                        style={{width: '250px', marginRight: '20px'}}
+                                        ></Lottie>
+                                    </div>
+                                        <h2 className='text-5xl text-gray-600'>
+                                            Oops! No food found.
+                                        </h2>
+                                        <p className='mt-4 text-primary font-bold'>
+                                            <Link className='underline' to='/add-food'>
+                                                Add a food now
+                                            </Link>
+                                        </p>
+                                </div>
+                            } 
+
 
         {/* Modal */}
         {/* You can open the modal using document.getElementById('ID').showModal() method */}
