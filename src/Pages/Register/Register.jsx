@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router';
 const Register = () => {
-    const { setUser, updateUser, createUser, googleSingIn } = useContext(AuthContext);
+    const { setUser, updateUser, createUser, googleSingIn, setLoading } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
@@ -47,22 +47,25 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             const user = result.user;
-            navigate(`${location.state ? location.state : '/'}`)
-            Swal.fire({
-            icon: "success",
-            title: "Register Successful!",
-            showConfirmButton: false,
-            timer: 1500
-            });
             updateUser(userInfo)
             .then(() => {
-                setUser({...user, displayName: name, photoURL: photoUrl, })
+                setUser({...user, displayName: name, photoURL: photoUrl, });
+                setLoading(false);
+                navigate(`${location.state ? location.state : '/'}`)
+                Swal.fire({
+                icon: "success",
+                title: "Register Successful!",
+                showConfirmButton: false,
+                timer: 1500
+                });                
             })
             .catch(() => {
                 setUser(user)
+                setLoading(false)
             })
         })
         .catch(error => {
+            setLoading(false)
             toast.error(error.message)
         })
     }
@@ -72,6 +75,7 @@ const Register = () => {
         googleSingIn()
         .then(result => {
             setUser(result.user);
+            setLoading(false)
             navigate(`${location.state ? location.state : '/'}`)
             Swal.fire({
             icon: "success",
@@ -81,6 +85,7 @@ const Register = () => {
             });
         })
         .catch(error => {
+            setLoading(false)
            toast.error(error.message)
         })
     }
