@@ -10,7 +10,7 @@
 
 ## 📸 Screenshot
 
-![Food Pulse Preview](./assets/preview.png)
+![Food Pulse Preview](https://i.ibb.co/ZpfXKjjn/screencapture-food-pulse-web-netlify-app-2025-06-15-14-04-04.png)
 
 ---
 
