@@ -1,10 +1,12 @@
 import React, { use } from 'react';
-import { AlarmClock, CalendarDays, ClockAlert } from 'lucide-react';
+import { AlarmClock, CalendarDays, ClockAlert, Link } from 'lucide-react';
 import FoodCard from '../FoodCard/FoodCard';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import dataNotFound from '../../assets/notFound.json'
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
 
 const ExpiredFood = ({fetchExpiredFoods}) => {
     const expiredFoods = use(fetchExpiredFoods);
@@ -81,6 +83,23 @@ const ExpiredFood = ({fetchExpiredFoods}) => {
                 }
                 </Slider>
                 </div>
+                            {
+                                expiredFoods.length === 0 &&
+                                <div className='text-center flex flex-col items-center justify-center pb-10'>
+                                    <div>
+                                        <Lottie
+                                        animationData={dataNotFound}
+                                        style={{width: '250px', marginRight: '20px'}}
+                                        ></Lottie>
+                                    </div>
+                                        <h2 className='text-5xl text-gray-600'>
+                                            Oops! Expired food not found.
+                                        </h2>
+                                        <p className='mt-4 text-primary font-bold'>
+                                        <Link className='underline' to='/fridge'>See All Foods</Link>
+                                        </p>
+                                </div>
+                            }                 
         </div>
     );
 };

@@ -50,7 +50,7 @@ const NearlyExpiryItems = ({expiringSoon}) => {
                                         ></Lottie>
                                     </div>
                                         <h2 className='text-5xl text-gray-600'>
-                                            Oops! Nearly Expiring not food found.
+                                            Oops! Nearly Expiring food not found.
                                         </h2>
                                         <p className='mt-4 text-primary font-bold'>
                                         <Link className='underline' to='/fridge'>See All Foods</Link>
