@@ -1,6 +1,8 @@
 
 # 🍽️ Food Pulse
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 **Food Pulse** is a smart food management web application that helps users monitor expiry dates, categorize food items, add storage notes, and avoid unnecessary waste — all in one intuitive interface.
 
 🔗 **Live Website:** [https://food-pulse-web.netlify.app](https://food-pulse-web.netlify.app)  
@@ -37,6 +39,15 @@ The goal of this project is to provide users with a modern solution to track the
 
 ---
 
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Tailwind CSS, Vite
+- **Backend**: Node.js, Express.js, MongoDB
+- **Authentication**: Firebase Auth, JWT
+- **Deployment**: Netlify (Frontend), Vercel (Backend)
+
+---
+
 ## 📦 NPM Packages Used
 
 ### 🧩 Core Packages
@@ -69,32 +80,26 @@ The goal of this project is to provide users with a modern solution to track the
 
 ---
 
-## ⚙️ How to Run Locally
+## ⚙️ Installation Guide
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/food-pulse.git
-   ```
+### 🔧 Frontend Setup
 
-2. Install dependencies:
-   ```bash
-   cd food-pulse
-   npm install
-   ```
+```bash
+git clone https://github.com/your-username/food-pulse.git
+cd food-pulse
+npm install
+npm run dev
+```
 
-3. Start the frontend:
-   ```bash
-   npm run dev
-   ```
+### 🖥 Backend Setup
 
-4. Start the backend:
-   ```bash
-   cd server
-   npm install
-   npm run start
-   ```
+```bash
+cd server
+npm install
+npm run start
+```
 
-5. Create a `.env` file for both frontend and backend and add necessary keys like Firebase config, MongoDB URI, JWT secret, etc.
+> ⚠️ Don’t forget to configure the `.env` files for both frontend and backend with your Firebase keys, MongoDB URI, and JWT secret.
 
 ---
 
@@ -103,6 +108,12 @@ The goal of this project is to provide users with a modern solution to track the
 **👨‍💻 Developer:** Md. Shahariar Hafiz  
 **📧 Email:** shahariar.works@gmail.com  
 **🔗 GitHub:** [mdshahariarhafizofficial](https://github.com/mdshahariarhafizofficial)
+
+---
+
+## 📌 License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT)
 
 ---
 
