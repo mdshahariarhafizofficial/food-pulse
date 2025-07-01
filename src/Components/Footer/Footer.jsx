@@ -24,8 +24,13 @@ const Footer = () => {
                className={ ({isActive}) => isActive? 'text-primary border-b-2 rounded-none font-bold': 'text-white' }
                >My Items</NavLink></li>
                </>
-               
             }
+            <li><NavLink to='/about' 
+            className={ ({isActive}) => isActive? 'text-primary border-b-2 rounded-none font-bold': 'lg:text-white' }
+            >About</NavLink></li>
+            <li><NavLink to='/faq' 
+            className={ ({isActive}) => isActive? 'text-primary border-b-2 rounded-none font-bold': 'lg:text-white' }
+            >FAQ</NavLink></li>            
 
     </>
     return (
