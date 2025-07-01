@@ -19,7 +19,7 @@ const NearlyExpiryItems = ({expiringSoon}) => {
             </div>
 
             {/* Slider */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  bg-white py-10 px-4 lg:px-0 lg:p-10 rounded-2xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  bg-white py-10 px-4 lg:px-10 lg:p-10 rounded-2xl">
                     {
                     expiringFood.map((food, index) => ( 
                     <motion.div 
