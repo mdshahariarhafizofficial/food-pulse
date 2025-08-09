@@ -30,11 +30,12 @@ const HeaderTop = () => {
                 <div>
                     <h2 className='text-white flex items-center gap-2'>Hi, {user && user?.displayName } <Handshake size={22} /> Welcome to food pulse</h2>
                 </div>
-                <div>
-                    <h2 className='text-white flex items-center gap-2'>
-                        <AlarmClock />                    
-                        {formattedTime}
-                        {today}
+                <div className='text-white flex items-center gap-2'>
+                    <AlarmClock />  
+                    <h2 className='uppercase'>
+                        {formattedTime}</h2>                  
+                    <h2 className=''>
+                        - {today}
                     </h2>
                 </div>
             </div>
