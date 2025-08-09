@@ -18,7 +18,8 @@ const HeaderTop = () => {
   const formattedTime = time.toLocaleTimeString("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit"
+    second: "2-digit",
+    hour12: true,
   });
 
     const today = format(new Date(), 'eeee, MMMM d, yyyy');
@@ -31,10 +32,8 @@ const HeaderTop = () => {
                 </div>
                 <div>
                     <h2 className='text-white flex items-center gap-2'>
-                        <AlarmClock />
-                        <span>                           
+                        <AlarmClock />                    
                         {formattedTime}
-                        </span>
                         {today}
                     </h2>
                 </div>
