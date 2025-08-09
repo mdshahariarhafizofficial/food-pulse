@@ -39,7 +39,7 @@ const Footer = () => {
                 <div className="md:max-w-[1500px] mx-auto footer py-20 px-0 sm:footer-horizontal text-base-content p-10">
                 <aside>
                     <img className='w-40' src={logo} alt="" />
-                    <p className='pl-2 text-primary'>
+                    <p className=' text-primary'>
                         Food Pulse helps you track food expiry, reduce waste, <br /> and stay organized in the kitchen.
                         Manage your personal <br /> food inventory with ease and get timely alerts <br /> before items go bad.
                     </p>
