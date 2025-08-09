@@ -1,12 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../Context/AuthContext';
 import { AlarmClock, Handshake } from 'lucide-react';
 import { format } from 'date-fns';
 
 const HeaderTop = () => {
     const {user} = useContext(AuthContext);
-    
-    const today = format(new Date(), 'hh:mm a, eeee, MMMM d, yyyy');
+    const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval); // Cleanup
+  }, []);
+
+  const formattedTime = time.toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+
+    const today = format(new Date(), 'eeee, MMMM d, yyyy');
     
     return (
         <div className='bg-primary py-2 hidden md:block'>
@@ -17,6 +32,9 @@ const HeaderTop = () => {
                 <div>
                     <h2 className='text-white flex items-center gap-2'>
                         <AlarmClock />
+                        <span>                           
+                        {formattedTime}
+                        </span>
                         {today}
                     </h2>
                 </div>
