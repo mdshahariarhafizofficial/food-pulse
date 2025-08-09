@@ -61,7 +61,7 @@ const Navbar = () => {
                         }
                     </ul>
                     </div>
-                    <Link to='/'><img className='w-full h-16 object-cover' src={logo} alt="" /></Link>
+                    <Link to='/'><img className='w-full h-12 md:h-16 object-cover' src={logo} alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-base font-medium space-x-4 text-secondary">
