@@ -26,7 +26,7 @@ const ScrollButton = () => {
             <>
             {
                 btnVisible &&
-                <button className="fixed bottom-5 right-5 z-50 p-3 rounded bg-primary text-white shadow-lg hover:bg-secondary transition-all duration-300" onClick={goToTop}>
+                <button className="fixed bottom-5 right-8 z-50 p-2 md:p-3 rounded bg-primary text-white shadow-lg hover:bg-secondary transition-all duration-300" onClick={goToTop}>
                     <CircleArrowUp size={30}/>
                 </button>
             }
