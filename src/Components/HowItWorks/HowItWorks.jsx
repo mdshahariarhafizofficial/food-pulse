@@ -13,7 +13,7 @@ const HowItWorks = () => {
                                 <span className="text-sm font-bold tracking-wider uppercase dark:text-gray-600">Manage your food smarter, not harder.</span>
                             </div>
                         </div>
-                        <div className="relative col-span-12 px-4 space-y-6 sm:col-span-8" bis_skin_checked="1">
+                        <div className="relative col-span-12 space-y-6 sm:col-span-8" bis_skin_checked="1">
                             <div className="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:dark:bg-secondary" bis_skin_checked="1">
                                 <div className="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-primary" bis_skin_checked="1">
                                     <h3 className="text-xl font-semibold tracking-wide"> Step 1 : Add Your Food</h3>
